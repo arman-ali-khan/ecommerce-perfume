@@ -112,6 +112,9 @@ export function getProductById(id: string) {
 export function getFeaturedProducts() {
   return products.filter(product => product.featured);
 }
+export function getAllProductIds() {
+  return products.map((product) => ({ id: product.id }))
+}
 
 export function getProductsByCategory(category: string) {
   return products.filter(product => 

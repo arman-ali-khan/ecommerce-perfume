@@ -13,14 +13,17 @@ interface CartItemProps {
 
 export function CartItem({ item }: CartItemProps) {
   const { updateQuantity, removeItem } = useCart()
-  const { product, quantity } = item
+  const { product, quantity, selectedSize } = item
+  
+  const size = product.sizes.find(s => s.ml === selectedSize)
+  const price = size?.price || 0
 
   return (
     <div className="flex items-start gap-4">
       <div className="relative aspect-square h-20 w-20 min-w-20 overflow-hidden rounded-md border bg-muted/50">
         <Image 
-          src={product?.images[0]} 
-          alt={product?.name}
+          src={product.images[0]} 
+          alt={product.name}
           fill
           className="object-cover transition-all hover:scale-105"
         />
@@ -29,9 +32,9 @@ export function CartItem({ item }: CartItemProps) {
       <div className="flex flex-1 flex-col">
         <div className="flex justify-between">
           <div className="space-y-1">
-            <h4 className="font-medium">{product?.name}</h4>
+            <h4 className="font-medium">{product.name}</h4>
             <p className="text-sm text-muted-foreground">
-              ${product?.price.toFixed(2)}
+              ${price.toFixed(2)} - {selectedSize}ml
             </p>
           </div>
           
@@ -39,7 +42,7 @@ export function CartItem({ item }: CartItemProps) {
             variant="ghost"
             size="icon"
             className="h-8 w-8"
-            onClick={() => removeItem(product?.id)}
+            onClick={() => removeItem(product.id)}
           >
             <X className="h-4 w-4" />
             <span className="sr-only">Remove</span>
@@ -51,7 +54,7 @@ export function CartItem({ item }: CartItemProps) {
             variant="outline"
             size="icon"
             className="h-8 w-8 rounded-full"
-            onClick={() => updateQuantity(product?.id, quantity - 1)}
+            onClick={() => updateQuantity(product.id, quantity - 1)}
             disabled={quantity <= 1}
           >
             <Minus className="h-3 w-3" />
@@ -64,8 +67,8 @@ export function CartItem({ item }: CartItemProps) {
             variant="outline"
             size="icon"
             className="h-8 w-8 rounded-full"
-            onClick={() => updateQuantity(product?.id, quantity + 1)}
-            disabled={quantity >= product?.stock}
+            onClick={() => updateQuantity(product.id, quantity + 1)}
+            disabled={quantity >= (size?.stock || 0)}
           >
             <Plus className="h-3 w-3" />
             <span className="sr-only">Increase quantity</span>

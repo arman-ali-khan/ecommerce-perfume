@@ -5,7 +5,7 @@ import React, { createContext, useContext, useEffect, useState } from "react"
 
 interface CartContextType {
   items: CartItem[]
-  addItem: (product: Product) => void
+  addItem: (product: Product, selectedSize: number) => void
   removeItem: (productId: string) => void
   updateQuantity: (productId: string, quantity: number) => void
   clearCart: () => void
@@ -26,10 +26,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   
   // Calculate derived values
   const totalItems = items.reduce((total, item) => total + item.quantity, 0)
-  const subtotal = items.reduce(
-    (total, item) => total + item?.product?.price * item.quantity, 
-    0
-  )
+  const subtotal = items.reduce((total, item) => {
+    const size = item.product.sizes.find(s => s.ml === item.selectedSize)
+    return total + (size?.price || 0) * item.quantity
+  }, 0)
 
   // Initialize state from localStorage when component mounts
   useEffect(() => {
@@ -51,24 +51,26 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, [items, mounted])
 
-  const addItem = (product: Product) => {
+  const addItem = (product: Product, selectedSize: number) => {
     setItems(prev => {
-      const existingItem = prev.find(item => item?.product?.id === product.id)
+      const existingItem = prev.find(item => 
+        item.product.id === product.id && item.selectedSize === selectedSize
+      )
       
       if (existingItem) {
         return prev.map(item => 
-          item?.product?.id === product.id 
+          item.product.id === product.id && item.selectedSize === selectedSize
             ? { ...item, quantity: item.quantity + 1 }
             : item
         )
       }
       
-      return [...prev, { product, quantity: 1 }]
+      return [...prev, { product, quantity: 1, selectedSize }]
     })
   }
 
   const removeItem = (productId: string) => {
-    setItems(prev => prev.filter(item => item?.product?.id !== productId))
+    setItems(prev => prev.filter(item => item.product.id !== productId))
   }
 
   const updateQuantity = (productId: string, quantity: number) => {
@@ -79,7 +81,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
     setItems(prev => 
       prev.map(item => 
-        item?.product?.id === productId 
+        item.product.id === productId 
           ? { ...item, quantity }
           : item
       )
