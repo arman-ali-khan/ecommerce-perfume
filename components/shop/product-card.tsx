@@ -25,7 +25,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="group relative flex flex-col overflow-hidden rounded-lg border bg-background"
+      className="group relative flex h-full flex-col overflow-hidden rounded-lg border bg-background"
     >
       <div className="relative aspect-square overflow-hidden bg-muted/50">
         <Link href={`/product/${product.id}`}>
@@ -49,7 +49,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
         <Button
           size="icon"
           className={cn(
-            "absolute right-2 top-2 h-8 w-8 rounded-full opacity-0 transition-opacity group-hover:opacity-100 lg:block",
+            "absolute right-2 top-2 h-8 w-8 rounded-full opacity-0 transition-opacity group-hover:opacity-100 lg:flex",
             isOutOfStock && "cursor-not-allowed opacity-50",
             "hidden" // Hide on mobile
           )}

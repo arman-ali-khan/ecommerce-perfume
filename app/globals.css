@@ -79,6 +79,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  .container {
+    @apply mx-auto max-w-[1400px] px-4;
+  }
 }
 
 /* Safe area insets for mobile devices */

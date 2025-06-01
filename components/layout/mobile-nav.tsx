@@ -19,7 +19,7 @@ export function MobileNav() {
   const { toggleCart, totalItems } = useCart()
   
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 block lg:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-50 block sm:hidden">
       <div className="safe-area-inset-bottom" />
       <nav className="mx-2 mb-2 flex items-center justify-between rounded-2xl border bg-background/95 p-2 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         {items.map((item) => {
