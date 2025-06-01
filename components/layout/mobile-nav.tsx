@@ -10,7 +10,7 @@ import { CategoriesDrawer } from "./categories-drawer"
 
 const items = [
   { label: "Home", icon: Home, href: "/" },
-  { label: "Search", icon: Search, href: "/shop" },
+  { label: "Search", icon: Search, href: "/shop?search=true" },
   { label: "Cart", icon: ShoppingBag, href: "#", isCart: true },
   { label: "Account", icon: User, href: "#" },
   { label: "Menu", icon: Menu, href: "#", isMenu: true },
@@ -38,6 +38,7 @@ export function MobileNav() {
                   key="cart"
                   onClick={toggleCart}
                   className="relative flex h-12 w-12 flex-col items-center justify-center gap-1"
+                  data-cart-button
                 >
                   <Icon
                     className={cn(

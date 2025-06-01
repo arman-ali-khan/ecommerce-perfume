@@ -1,8 +1,8 @@
 "use client"
 
-import { MoonIcon, ShoppingCartIcon, SunIcon } from "lucide-react"
+import { MoonIcon, SearchIcon, ShoppingCartIcon, SunIcon } from "lucide-react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 
@@ -11,6 +11,7 @@ import { useCart } from "@/providers/cart-provider"
 
 export function Navbar() {
   const pathname = usePathname()
+  const router = useRouter()
   const { theme, setTheme } = useTheme()
   const { totalItems, toggleCart } = useCart()
   const [mounted, setMounted] = useState(false)
@@ -23,6 +24,10 @@ export function Navbar() {
     { label: "Home", path: "/" },
     { label: "Shop", path: "/shop" },
   ]
+
+  const handleSearchClick = () => {
+    router.push("/shop?search=true")
+  }
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur transition-all">
@@ -64,6 +69,16 @@ export function Navbar() {
         </nav>
         
         <div className="ml-auto flex items-center gap-2">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="hidden lg:flex"
+            onClick={handleSearchClick}
+          >
+            <SearchIcon className="h-5 w-5" />
+            <span className="sr-only">Search</span>
+          </Button>
+
           {mounted && (
             <Button
               variant="ghost"
@@ -86,6 +101,7 @@ export function Navbar() {
             className="relative" 
             onClick={toggleCart}
             aria-label="Open cart"
+            data-cart-button
           >
             <ShoppingCartIcon className="h-5 w-5" />
             {totalItems > 0 && (
