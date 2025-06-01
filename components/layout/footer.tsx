@@ -1,8 +1,11 @@
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 
-export function Footer() {
+interface FooterProps extends React.HTMLAttributes<HTMLElement> {}
+
+export function Footer({ className, ...props }: FooterProps) {
   return (
-    <footer className="border-t bg-muted/40">
+    <footer className={cn("border-t bg-muted/40", className)} {...props}>
       <div className="container py-12">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div>

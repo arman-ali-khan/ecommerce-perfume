@@ -49,8 +49,9 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
         <Button
           size="icon"
           className={cn(
-            "absolute right-2 top-2 h-8 w-8 rounded-full opacity-0 transition-opacity group-hover:opacity-100",
-            isOutOfStock && "cursor-not-allowed opacity-50"
+            "absolute right-2 top-2 h-8 w-8 rounded-full opacity-0 transition-opacity group-hover:opacity-100 lg:block",
+            isOutOfStock && "cursor-not-allowed opacity-50",
+            "hidden" // Hide on mobile
           )}
           disabled={isOutOfStock}
           onClick={() => addItem(product)}
@@ -65,9 +66,17 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
         <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
           {product.description}
         </p>
-        <div className="mt-auto flex items-center justify-between pt-4">
+        <div className="mt-auto flex items-center justify-between gap-2 pt-4">
           <span className="font-semibold">${product.price.toFixed(2)}</span>
-          <span className="text-sm text-muted-foreground">
+          <Button
+            size="sm"
+            className="lg:hidden"
+            disabled={isOutOfStock}
+            onClick={() => addItem(product)}
+          >
+            Add
+          </Button>
+          <span className="hidden text-sm text-muted-foreground lg:inline">
             {isOutOfStock ? "Out of stock" : `${product.stock} in stock`}
           </span>
         </div>

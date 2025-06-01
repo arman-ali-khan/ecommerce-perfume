@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/providers/theme-provider';
 import { CartProvider } from '@/providers/cart-provider';
 import { Web3Provider } from '@/providers/web3-provider';
 import { Navbar } from '@/components/layout/navbar';
+import { MobileNav } from '@/components/layout/mobile-nav';
 import { Footer } from '@/components/layout/footer';
 import { CartDrawer } from '@/components/cart/cart-drawer';
 import { FloatingCartButton } from '@/components/cart/floating-cart-button';
@@ -34,10 +35,11 @@ export default function RootLayout({
             <CartProvider>
               <div className="relative flex min-h-screen flex-col">
                 <Navbar />
-                <main className="flex-1">{children}</main>
-                <Footer />
+                <main className="flex-1 pb-[4.5rem] lg:pb-0">{children}</main>
+                <Footer className="hidden lg:block" />
                 <CartDrawer />
-                <FloatingCartButton />
+                <FloatingCartButton className="hidden lg:block" />
+                <MobileNav />
               </div>
             </CartProvider>
           </Web3Provider>

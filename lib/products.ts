@@ -86,6 +86,20 @@ export const products: Product[] = [
     stock: 75,
   },
   {
+    id: "3",
+    name: "NFT Display Frame",
+    description: "Digital frame to display your NFT collection.",
+    price: 299.99,
+    images: [
+      "https://images.pexels.com/photos/3825517/pexels-photo-3825517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.pexels.com/photos/3825545/pexels-photo-3825545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    ],
+    category: "home",
+    tags: ["nft", "display", "digital"],
+    featured: true,
+    stock: 15,
+  },
+  {
     id: "7",
     name: "Blockchain Developer Kit",
     description: "Complete toolkit for blockchain development.",

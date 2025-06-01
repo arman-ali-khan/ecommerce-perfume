@@ -80,3 +80,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Safe area insets for mobile devices */
+.safe-area-inset-bottom {
+  height: env(safe-area-inset-bottom);
+}

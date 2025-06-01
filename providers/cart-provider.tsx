@@ -27,7 +27,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   // Calculate derived values
   const totalItems = items.reduce((total, item) => total + item.quantity, 0)
   const subtotal = items.reduce(
-    (total, item) => total + item.product.price * item.quantity, 
+    (total, item) => total + item?.product?.price * item.quantity, 
     0
   )
 
@@ -53,11 +53,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const addItem = (product: Product) => {
     setItems(prev => {
-      const existingItem = prev.find(item => item.product.id === product.id)
+      const existingItem = prev.find(item => item?.product?.id === product.id)
       
       if (existingItem) {
         return prev.map(item => 
-          item.product.id === product.id 
+          item?.product?.id === product.id 
             ? { ...item, quantity: item.quantity + 1 }
             : item
         )
@@ -71,7 +71,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }
 
   const removeItem = (productId: string) => {
-    setItems(prev => prev.filter(item => item.product.id !== productId))
+    setItems(prev => prev.filter(item => item?.product?.id !== productId))
   }
 
   const updateQuantity = (productId: string, quantity: number) => {
@@ -82,7 +82,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
     setItems(prev => 
       prev.map(item => 
-        item.product.id === productId 
+        item?.product?.id === productId 
           ? { ...item, quantity }
           : item
       )
