@@ -59,15 +59,6 @@ export function FeaturesSection() {
   return (
     <section className="py-16 max-w-56 md:py-24">
       <div className="container">
-        <div className="flex flex-col items-center text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            Explore Categories
-          </h2>
-          <p className="mt-4 max-w-sm text-muted-foreground">
-            Discover our curated collection of Web3-enabled products across different categories
-          </p>
-        </div>
-
         <div className=" mx-auto">
           <Accordion type="single" collapsible className="w-full">
             {categories.map((category, index) => {
@@ -83,14 +74,7 @@ export function FeaturesSection() {
                       href={category.href}
                       className="group relative flex items-center gap-4 rounded-lg border p-4 transition-colors hover:bg-muted"
                     >
-                      <div className="relative aspect-square h-20 w-20 overflow-hidden rounded-md">
-                        {/* <Image
-                          src={category.image}
-                          alt={category.title}
-                          fill
-                          className="object-cover transition-transform group-hover:scale-105"
-                        /> */}
-                      </div>
+                   
                       <div className="flex-1">
                         <h3 className="font-medium">{category.title}</h3>
                       

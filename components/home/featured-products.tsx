@@ -64,39 +64,9 @@ export function FeaturedProducts() {
   return (
     <section className="py-16 md:py-24">
       <div className="container space-y-12">
-        <div className="flex flex-col items-center text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            Shop by Category
-          </h2>
-          <p className="mt-4 max-w-2xl text-muted-foreground">
-            Explore our curated collection of Web3-enabled products across different categories
-          </p>
-        </div>
+       
 
-        <div className="grid gap-8 lg:grid-cols-[300px,1fr]">
-          <div className="rounded-lg border bg-card">
-            {/* Featured Category */}
-            <div className="relative overflow-hidden">
-              <div className="aspect-[21/9] relative">
-                <Image
-                  src={categories[0].image}
-                  alt={categories[0].title}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-black/50" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <FeaturedIcon className="mx-auto h-8 w-8 mb-2" />
-                    <h3 className="text-xl font-bold">{categories[0].title}</h3>
-                    // ... existing code ...
-                  </div>
-                </div>
-                
-              </div>
-            </div>
-          </div>
-        </div>
+        
         <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {featuredProducts.map((product, index) => (
               <ProductCard key={product.id} product={product} index={index} />
