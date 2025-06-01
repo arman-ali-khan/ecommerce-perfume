@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, Minus, Plus, ShoppingCart } from "lucide-react"
+import { ArrowLeft, Check } from "lucide-react"
 import { notFound } from "next/navigation"
 
 import { getProductById } from "@/lib/products"
@@ -11,27 +11,25 @@ import { useCart } from "@/providers/cart-provider"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Label } from "@/components/ui/label"
 
 export default function ProductPage({ params }: { params: { id: string } }) {
   const product = getProductById(params.id)
-  const [quantity, setQuantity] = useState(1)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [selectedSize, setSelectedSize] = useState(product?.sizes[0].ml)
   const { addItem } = useCart()
   
   if (!product) {
     notFound()
   }
   
-  const handleQuantityChange = (newQuantity: number) => {
-    if (newQuantity > 0 && newQuantity <= product.stock) {
-      setQuantity(newQuantity)
-    }
-  }
+  const selectedSizeOption = product.sizes.find(s => s.ml === selectedSize)
+  const isOutOfStock = selectedSizeOption?.stock === 0
   
   const handleAddToCart = () => {
-    // Add product to cart with the selected quantity
-    for (let i = 0; i < quantity; i++) {
-      addItem(product)
+    if (selectedSize) {
+      addItem(product, selectedSize)
     }
   }
   
@@ -80,10 +78,17 @@ export default function ProductPage({ params }: { params: { id: string } }) {
         
         <div className="space-y-6">
           <div>
+            <div className="mb-2 text-sm text-muted-foreground">{product.brand}</div>
             <h1 className="text-3xl font-bold">{product.name}</h1>
             <div className="mt-2 flex items-center gap-2">
-              <span className="text-2xl font-semibold">${product.price.toFixed(2)}</span>
-              {product.featured && <Badge variant="web3">Featured</Badge>}
+              <Badge variant={
+                product.gender === 'male' ? 'default' : 
+                product.gender === 'female' ? 'secondary' : 
+                'outline'
+              }>
+                {product.gender}
+              </Badge>
+              <Badge variant="outline">{product.category}</Badge>
             </div>
           </div>
           
@@ -91,65 +96,67 @@ export default function ProductPage({ params }: { params: { id: string } }) {
           
           <Separator />
           
-          <div>
-            <div className="mb-4 flex items-center justify-between">
-              <h3 className="font-medium">Quantity</h3>
-              <div className="flex items-center gap-3">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-8 w-8 rounded-full"
-                  onClick={() => handleQuantityChange(quantity - 1)}
-                  disabled={quantity <= 1}
+          <div className="space-y-4">
+            <h3 className="font-medium">Select Size</h3>
+            <RadioGroup
+              value={selectedSize?.toString()}
+              onValueChange={(value) => setSelectedSize(parseInt(value))}
+              className="grid grid-cols-3 gap-4"
+            >
+              {product.sizes.map((size) => (
+                <Label
+                  key={size.ml}
+                  className={`flex cursor-pointer flex-col items-center justify-between rounded-lg border p-4 hover:bg-accent ${
+                    selectedSize === size.ml ? "border-primary" : "border-input"
+                  } ${size.stock === 0 ? "opacity-50 cursor-not-allowed" : ""}`}
                 >
-                  <Minus className="h-3 w-3" />
-                </Button>
-                
-                <span className="w-6 text-center">{quantity}</span>
-                
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-8 w-8 rounded-full"
-                  onClick={() => handleQuantityChange(quantity + 1)}
-                  disabled={quantity >= product.stock}
-                >
-                  <Plus className="h-3 w-3" />
-                </Button>
-              </div>
-            </div>
-            
-            <p className="text-sm text-muted-foreground">
-              {product.stock} items in stock
-            </p>
+                  <RadioGroupItem
+                    value={size.ml.toString()}
+                    id={`size-${size.ml}`}
+                    disabled={size.stock === 0}
+                    className="sr-only"
+                  />
+                  <span className="text-2xl font-semibold">{size.ml}</span>
+                  <span className="text-sm text-muted-foreground">ml</span>
+                  <span className="mt-2 font-medium">${size.price.toFixed(2)}</span>
+                  {size.stock === 0 ? (
+                    <span className="mt-1 text-xs text-muted-foreground">Out of stock</span>
+                  ) : (
+                    <span className="mt-1 text-xs text-muted-foreground">{size.stock} in stock</span>
+                  )}
+                </Label>
+              ))}
+            </RadioGroup>
           </div>
           
           <Button 
             size="lg" 
-            className="w-full gap-2"
-            disabled={product.stock <= 0}
+            className="w-full"
+            disabled={isOutOfStock}
             onClick={handleAddToCart}
           >
-            <ShoppingCart className="h-4 w-4" />
-            Add to Cart
+            {isOutOfStock ? "Out of Stock" : "Add to Cart"}
           </Button>
           
-          <div className="rounded-lg border p-4">
-            <h3 className="font-medium">Web3 Features</h3>
-            <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
-                NFT authenticity certificate included
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
-                Purchase with cryptocurrency
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
-                Unlock exclusive digital content
-              </li>
-            </ul>
+          <Separator />
+          
+          <div className="space-y-4">
+            <h3 className="font-medium">Fragrance Notes</h3>
+            <div className="grid gap-6 sm:grid-cols-3">
+              {product.notes.map((note) => (
+                <div key={note.type} className="space-y-2">
+                  <h4 className="text-sm font-medium capitalize">{note.type} Notes</h4>
+                  <ul className="space-y-1">
+                    {note.notes.map((noteName) => (
+                      <li key={noteName} className="flex items-center text-sm text-muted-foreground">
+                        <Check className="mr-2 h-4 w-4" />
+                        {noteName}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

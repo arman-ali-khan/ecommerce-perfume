@@ -3,129 +3,101 @@ import { Product } from "@/types";
 export const products: Product[] = [
   {
     id: "1",
-    name: "Blockchain Hoodie",
-    description: "Premium hoodie with embroidered blockchain design.",
-    price: 79.99,
-    images: [
-      "https://images.pexels.com/photos/7679720/pexels-photo-7679720.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "https://images.pexels.com/photos/7679721/pexels-photo-7679721.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    name: "Ocean Breeze",
+    brand: "AquaScents",
+    description: "A fresh aquatic fragrance with hints of sea salt and citrus.",
+    gender: "unisex",
+    notes: [
+      {
+        type: "top",
+        notes: ["Bergamot", "Sea Salt", "Lemon"]
+      },
+      {
+        type: "middle",
+        notes: ["Marine Accord", "Jasmine", "Lavender"]
+      },
+      {
+        type: "base",
+        notes: ["Ambergris", "Cedar", "Musk"]
+      }
     ],
-    category: "clothing",
-    tags: ["hoodie", "blockchain", "premium"],
-    featured: true,
-    stock: 50,
+    sizes: [
+      { ml: 30, price: 49.99, stock: 50 },
+      { ml: 50, price: 79.99, stock: 30 },
+      { ml: 100, price: 129.99, stock: 20 }
+    ],
+    images: [
+      "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg",
+      "https://images.pexels.com/photos/965990/pexels-photo-965990.jpeg"
+    ],
+    category: "fresh",
+    tags: ["aquatic", "fresh", "summer"],
+    featured: true
   },
   {
     id: "2",
-    name: "Crypto Wallet Hardware",
-    description: "Secure hardware wallet for your crypto assets.",
-    price: 149.99,
-    images: [
-      "https://images.pexels.com/photos/8937661/pexels-photo-8937661.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "https://images.pexels.com/photos/8937660/pexels-photo-8937660.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    name: "Midnight Rose",
+    brand: "Floral Essence",
+    description: "An elegant floral fragrance dominated by rose and jasmine.",
+    gender: "female",
+    notes: [
+      {
+        type: "top",
+        notes: ["Pink Pepper", "Raspberry"]
+      },
+      {
+        type: "middle",
+        notes: ["Rose", "Jasmine", "Peony"]
+      },
+      {
+        type: "base",
+        notes: ["Vanilla", "Patchouli", "White Musk"]
+      }
     ],
-    category: "electronics",
-    tags: ["wallet", "security", "crypto"],
-    featured: true,
-    stock: 30,
+    sizes: [
+      { ml: 30, price: 59.99, stock: 40 },
+      { ml: 50, price: 89.99, stock: 25 },
+      { ml: 100, price: 149.99, stock: 15 }
+    ],
+    images: [
+      "https://images.pexels.com/photos/965992/pexels-photo-965992.jpeg",
+      "https://images.pexels.com/photos/965993/pexels-photo-965993.jpeg"
+    ],
+    category: "floral",
+    tags: ["floral", "romantic", "evening"],
+    featured: true
   },
   {
     id: "3",
-    name: "NFT Display Frame",
-    description: "Digital frame to display your NFT collection.",
-    price: 299.99,
-    images: [
-      "https://images.pexels.com/photos/3825517/pexels-photo-3825517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "https://images.pexels.com/photos/3825545/pexels-photo-3825545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    name: "Oud Royal",
+    brand: "Oriental Luxe",
+    description: "A rich oriental fragrance with precious oud and exotic spices.",
+    gender: "unisex",
+    notes: [
+      {
+        type: "top",
+        notes: ["Saffron", "Cinnamon"]
+      },
+      {
+        type: "middle",
+        notes: ["Oud", "Rose", "Incense"]
+      },
+      {
+        type: "base",
+        notes: ["Amber", "Sandalwood", "Vanilla"]
+      }
     ],
-    category: "home",
-    tags: ["nft", "display", "digital"],
-    featured: true,
-    stock: 15,
-  },
-  {
-    id: "4",
-    name: "Crypto Coin Necklace",
-    description: "Elegant necklace with cryptocurrency coin pendant.",
-    price: 59.99,
-    images: [
-      "https://images.pexels.com/photos/5370706/pexels-photo-5370706.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "https://images.pexels.com/photos/5370707/pexels-photo-5370707.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    sizes: [
+      { ml: 50, price: 199.99, stock: 20 },
+      { ml: 100, price: 299.99, stock: 10 }
     ],
-    category: "accessories",
-    tags: ["jewelry", "necklace", "crypto"],
-    featured: false,
-    stock: 25,
-  },
-  {
-    id: "5",
-    name: "Decentralized Tee",
-    description: "Soft cotton t-shirt with decentralized network design.",
-    price: 34.99,
     images: [
-      "https://images.pexels.com/photos/5698851/pexels-photo-5698851.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "https://images.pexels.com/photos/5698850/pexels-photo-5698850.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "https://images.pexels.com/photos/965994/pexels-photo-965994.jpeg",
+      "https://images.pexels.com/photos/965995/pexels-photo-965995.jpeg"
     ],
-    category: "clothing",
-    tags: ["tshirt", "casual", "defi"],
-    featured: false,
-    stock: 100,
-  },
-  {
-    id: "6",
-    name: "Smart Contract Notebook",
-    description: "Premium notebook with embossed smart contract design.",
-    price: 24.99,
-    images: [
-      "https://images.pexels.com/photos/6771607/pexels-photo-6771607.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "https://images.pexels.com/photos/6771985/pexels-photo-6771985.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    ],
-    category: "accessories",
-    tags: ["notebook", "stationery", "ethereum"],
-    featured: false,
-    stock: 75,
-  },
-  {
-    id: "3",
-    name: "NFT Display Frame",
-    description: "Digital frame to display your NFT collection.",
-    price: 299.99,
-    images: [
-      "https://images.pexels.com/photos/3825517/pexels-photo-3825517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "https://images.pexels.com/photos/3825545/pexels-photo-3825545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    ],
-    category: "home",
-    tags: ["nft", "display", "digital"],
-    featured: true,
-    stock: 15,
-  },
-  {
-    id: "7",
-    name: "Blockchain Developer Kit",
-    description: "Complete toolkit for blockchain development.",
-    price: 199.99,
-    images: [
-      "https://images.pexels.com/photos/8413213/pexels-photo-8413213.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "https://images.pexels.com/photos/8413214/pexels-photo-8413214.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    ],
-    category: "electronics",
-    tags: ["development", "coding", "kit"],
-    featured: true,
-    stock: 10,
-  },
-  {
-    id: "8",
-    name: "Crypto Mining Lamp",
-    description: "Decorative lamp inspired by crypto mining rigs.",
-    price: 129.99,
-    images: [
-      "https://images.pexels.com/photos/1112598/pexels-photo-1112598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      "https://images.pexels.com/photos/1123262/pexels-photo-1123262.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    ],
-    category: "home",
-    tags: ["lamp", "mining", "decoration"],
-    featured: false,
-    stock: 20,
+    category: "oriental",
+    tags: ["oud", "luxury", "exotic"],
+    featured: true
   }
 ];
 
@@ -141,8 +113,15 @@ export function getFeaturedProducts() {
   return products.filter(product => product.featured);
 }
 
+export function getProductsByCategory(category: string) {
+  return products.filter(product => 
+    category === 'all' ? true : product.category === category
+  );
+}
+
 export function filterProducts(options: {
   category?: string;
+  gender?: string;
   minPrice?: number;
   maxPrice?: number;
   sortBy?: string;
@@ -153,27 +132,33 @@ export function filterProducts(options: {
     filtered = filtered.filter(product => product.category === options.category);
   }
   
+  if (options.gender && options.gender !== 'all') {
+    filtered = filtered.filter(product => product.gender === options.gender);
+  }
+  
   if (options.minPrice !== undefined) {
-    filtered = filtered.filter(product => product.price >= (options.minPrice ?? 0));
+    filtered = filtered.filter(product => 
+      Math.min(...product.sizes.map(s => s.price)) >= (options.minPrice ?? 0)
+    );
   }
   
   if (options.maxPrice !== undefined) {
-    filtered = filtered.filter(product => product.price <= (options.maxPrice ?? Infinity));
+    filtered = filtered.filter(product => 
+      Math.min(...product.sizes.map(s => s.price)) <= (options.maxPrice ?? Infinity)
+    );
   }
   
   if (options.sortBy) {
     switch (options.sortBy) {
       case 'price-asc':
-        filtered.sort((a, b) => a.price - b.price);
+        filtered.sort((a, b) => 
+          Math.min(...a.sizes.map(s => s.price)) - Math.min(...b.sizes.map(s => s.price))
+        );
         break;
       case 'price-desc':
-        filtered.sort((a, b) => b.price - a.price);
-        break;
-      case 'newest':
-        // In a real app, you would sort by date
-        break;
-      case 'popular':
-        // In a real app, you would sort by popularity/sales
+        filtered.sort((a, b) => 
+          Math.min(...b.sizes.map(s => s.price)) - Math.min(...a.sizes.map(s => s.price))
+        );
         break;
     }
   }

@@ -1,77 +1,72 @@
 import Link from "next/link"
-import Image from "next/image"
-import { Shirt, Watch, Laptop, Home as HomeIcon, ChevronRight, Gem, Wallet } from "lucide-react"
-
+import { getProductsByCategory } from "@/lib/products"
 import { ProductCard } from "@/components/shop/product-card"
-import { getFeaturedProducts } from "@/lib/products"
-import { 
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
 
 const categories = [
   {
-    title: "Featured",
-    icon: Gem,
-    href: "/shop?category=featured",
-    description: "Exclusive and limited edition Web3 products",
-    featured: true,
-    image: "https://images.pexels.com/photos/8370752/pexels-photo-8370752.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    id: "floral",
+    title: "Floral Fragrances",
+    description: "Delicate and romantic scents featuring beautiful flowers"
   },
   {
-    title: "Clothing",
-    icon: Shirt,
-    href: "/shop?category=clothing",
-    description: "Blockchain-inspired apparel and fashion items",
-    image: "https://images.pexels.com/photos/7679720/pexels-photo-7679720.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    id: "woody",
+    title: "Woody Fragrances",
+    description: "Warm and sophisticated scents with precious woods"
   },
   {
-    title: "Accessories",
-    icon: Watch,
-    href: "/shop?category=accessories",
-    description: "Crypto-themed jewelry and accessories",
-    image: "https://images.pexels.com/photos/5370706/pexels-photo-5370706.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    id: "oriental",
+    title: "Oriental Fragrances",
+    description: "Rich and exotic scents with spices and resins"
   },
   {
-    title: "Electronics",
-    icon: Laptop,
-    href: "/shop?category=electronics",
-    description: "Hardware wallets and digital devices",
-    image: "https://images.pexels.com/photos/8937661/pexels-photo-8937661.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    id: "fresh",
+    title: "Fresh Fragrances",
+    description: "Clean and invigorating scents for everyday wear"
   },
   {
-    title: "Home",
-    icon: HomeIcon,
-    href: "/shop?category=home",
-    description: "NFT displays and home decor",
-    image: "https://images.pexels.com/photos/3825517/pexels-photo-3825517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-  },
-  {
-    title: "Wallets",
-    icon: Wallet,
-    href: "/shop?category=wallets",
-    description: "Secure cryptocurrency hardware wallets",
-    image: "https://images.pexels.com/photos/8370784/pexels-photo-8370784.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    id: "citrus",
+    title: "Citrus Fragrances",
+    description: "Bright and energetic scents with citrus notes"
   }
 ]
 
 export function FeaturedProducts() {
-  const featuredProducts = getFeaturedProducts()
-  const FeaturedIcon = categories[0].icon
-  
   return (
     <section className="py-16 md:py-24">
-      <div className="container space-y-12">
-       
-
-        
-        <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-            {featuredProducts.map((product, index) => (
-              <ProductCard key={product.id} product={product} index={index} />
-            ))}
-          </div>
+      <div className="container space-y-16">
+        {categories.map(category => {
+          const products = getProductsByCategory(category.id)
+          
+          if (products.length === 0) return null
+          
+          return (
+            <div key={category.id} className="space-y-8">
+              <div className="space-y-2">
+                <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
+                  {category.title}
+                </h2>
+                <p className="text-muted-foreground">
+                  {category.description}
+                </p>
+              </div>
+              
+              <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {products.map((product, index) => (
+                  <ProductCard key={product.id} product={product} index={index} />
+                ))}
+              </div>
+              
+              <div className="text-center">
+                <Link 
+                  href={`/shop?category=${category.id}`}
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground"
+                >
+                  View all {category.title.toLowerCase()} →
+                </Link>
+              </div>
+            </div>
+          )
+        })}
       </div>
     </section>
   )

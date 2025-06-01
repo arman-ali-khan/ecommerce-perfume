@@ -28,7 +28,8 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
     endPosition: { x: number; y: number }
   } | null>(null)
   
-  const isOutOfStock = product.stock <= 0
+  const lowestPrice = Math.min(...product.sizes.map(s => s.price))
+  const isOutOfStock = product.sizes.every(s => s.stock <= 0)
 
   const handleAddToCart = () => {
     if (!buttonRef.current) return
@@ -51,9 +52,8 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       })
       
       setShowAnimation(true)
-      addItem(product)
+      addItem(product, product.sizes[0].ml)
       
-      // Show toast notification
       toast(`Added ${product.name} to cart`, {
         position: "bottom-left",
         duration: 2000,
@@ -88,14 +88,12 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             />
           </Link>
           
-          {product.featured && (
-            <Badge
-              className="absolute left-2 top-2 px-2 py-1"
-              variant="web3"
-            >
-              Featured
-            </Badge>
-          )}
+          <Badge
+            className="absolute left-2 top-2 px-2 py-1"
+            variant={product.gender === 'male' ? 'default' : product.gender === 'female' ? 'secondary' : 'outline'}
+          >
+            {product.gender}
+          </Badge>
 
           <Button
             ref={buttonRef}
@@ -103,7 +101,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             className={cn(
               "absolute right-2 top-2 h-8 w-8 rounded-full opacity-0 transition-opacity group-hover:opacity-100 lg:flex",
               isOutOfStock && "cursor-not-allowed opacity-50",
-              "hidden" // Hide on mobile
+              "hidden"
             )}
             disabled={isOutOfStock}
             onClick={handleAddToCart}
@@ -114,12 +112,16 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
         </div>
 
         <div className="flex flex-1 flex-col p-4">
+          <div className="mb-2 text-sm text-muted-foreground">{product.brand}</div>
           <h3 className="line-clamp-1 font-medium">{product.name}</h3>
           <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
             {product.description}
           </p>
           <div className="mt-auto flex items-center justify-between gap-2 pt-4">
-            <span className="font-semibold">${product.price.toFixed(2)}</span>
+            <div>
+              <span className="font-semibold">${lowestPrice.toFixed(2)}</span>
+              <span className="text-sm text-muted-foreground"> / {product.sizes[0].ml}ml</span>
+            </div>
             <Button
               ref={buttonRef}
               size="sm"
@@ -129,9 +131,6 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             >
               Add
             </Button>
-            <span className="hidden text-sm text-muted-foreground lg:inline">
-              {isOutOfStock ? "Out of stock" : `${product.stock} in stock`}
-            </span>
           </div>
         </div>
       </motion.div>
