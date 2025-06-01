@@ -99,13 +99,14 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             ref={buttonRef}
             size="icon"
             className={cn(
-              "absolute right-2 top-2 h-8 w-8 rounded-full opacity-0 transition-opacity group-hover:opacity-100 lg:flex",
+              "absolute right-2 top-2 h-8 w-auto px-2 gap-1 rounded-full opacity-0 transition-opacity group-hover:opacity-100 lg:flex",
               isOutOfStock && "cursor-not-allowed opacity-50",
               "hidden"
             )}
             disabled={isOutOfStock}
             onClick={handleAddToCart}
           >
+            Add cart
             <ShoppingBag className="h-4 w-4" />
             <span className="sr-only">Add to cart</span>
           </Button>

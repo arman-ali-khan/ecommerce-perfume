@@ -27,12 +27,13 @@ export const products: Product[] = [
       { ml: 100, price: 129.99, stock: 20 }
     ],
     images: [
-      "https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg",
-      "https://images.pexels.com/photos/965990/pexels-photo-965990.jpeg"
+      "https://images.pexels.com/photos/3059398/pexels-photo-3059398.jpeg",
+      "https://images.pexels.com/photos/3059399/pexels-photo-3059399.jpeg"
     ],
     category: "fresh",
     tags: ["aquatic", "fresh", "summer"],
-    featured: true
+    featured: true,
+    price: 49.99
   },
   {
     id: "2",
@@ -60,12 +61,13 @@ export const products: Product[] = [
       { ml: 100, price: 149.99, stock: 15 }
     ],
     images: [
-      "https://images.pexels.com/photos/965992/pexels-photo-965992.jpeg",
-      "https://images.pexels.com/photos/965993/pexels-photo-965993.jpeg"
+      "https://images.pexels.com/photos/3059609/pexels-photo-3059609.jpeg",
+      "https://images.pexels.com/photos/3059610/pexels-photo-3059610.jpeg"
     ],
     category: "floral",
     tags: ["floral", "romantic", "evening"],
-    featured: true
+    featured: true,
+    price: 59.99
   },
   {
     id: "3",
@@ -92,12 +94,181 @@ export const products: Product[] = [
       { ml: 100, price: 299.99, stock: 10 }
     ],
     images: [
-      "https://images.pexels.com/photos/965994/pexels-photo-965994.jpeg",
-      "https://images.pexels.com/photos/965995/pexels-photo-965995.jpeg"
+      "https://images.pexels.com/photos/3059625/pexels-photo-3059625.jpeg",
+      "https://images.pexels.com/photos/3059626/pexels-photo-3059626.jpeg"
     ],
     category: "oriental",
     tags: ["oud", "luxury", "exotic"],
-    featured: true
+    featured: true,
+    price: 199.99
+  },
+  {
+    id: "4",
+    name: "Citrus Burst",
+    brand: "Fresh Vibes",
+    description: "An energizing blend of citrus fruits and fresh herbs.",
+    gender: "unisex",
+    notes: [
+      {
+        type: "top",
+        notes: ["Orange", "Lemon", "Grapefruit"]
+      },
+      {
+        type: "middle",
+        notes: ["Mint", "Basil", "Green Tea"]
+      },
+      {
+        type: "base",
+        notes: ["Vetiver", "White Woods", "Musk"]
+      }
+    ],
+    sizes: [
+      { ml: 30, price: 45.99, stock: 60 },
+      { ml: 50, price: 75.99, stock: 35 },
+      { ml: 100, price: 119.99, stock: 25 }
+    ],
+    images: [
+      "https://images.pexels.com/photos/3059640/pexels-photo-3059640.jpeg",
+      "https://images.pexels.com/photos/3059641/pexels-photo-3059641.jpeg"
+    ],
+    category: "citrus",
+    tags: ["fresh", "energetic", "summer"],
+    featured: false,
+    price: 45.99
+  },
+  {
+    id: "5",
+    name: "Cedar Woods",
+    brand: "Woodland",
+    description: "A sophisticated woody fragrance with deep forest notes.",
+    gender: "male",
+    notes: [
+      {
+        type: "top",
+        notes: ["Bergamot", "Pine Needles"]
+      },
+      {
+        type: "middle",
+        notes: ["Cedar", "Cypress", "Juniper"]
+      },
+      {
+        type: "base",
+        notes: ["Sandalwood", "Amber", "Oakmoss"]
+      }
+    ],
+    sizes: [
+      { ml: 50, price: 85.99, stock: 30 },
+      { ml: 100, price: 139.99, stock: 20 }
+    ],
+    images: [
+      "https://images.pexels.com/photos/3059650/pexels-photo-3059650.jpeg",
+      "https://images.pexels.com/photos/3059651/pexels-photo-3059651.jpeg"
+    ],
+    category: "woody",
+    tags: ["woody", "forest", "masculine"],
+    featured: false,
+    price: 85.99
+  },
+  {
+    id: "6",
+    name: "Jasmine Dreams",
+    brand: "Floral Essence",
+    description: "A delicate floral fragrance centered around jasmine blooms.",
+    gender: "female",
+    notes: [
+      {
+        type: "top",
+        notes: ["Green Tea", "Bergamot"]
+      },
+      {
+        type: "middle",
+        notes: ["Jasmine", "Lily of the Valley", "Orange Blossom"]
+      },
+      {
+        type: "base",
+        notes: ["White Musk", "Vanilla", "Sandalwood"]
+      }
+    ],
+    sizes: [
+      { ml: 30, price: 55.99, stock: 45 },
+      { ml: 50, price: 85.99, stock: 30 },
+      { ml: 100, price: 139.99, stock: 15 }
+    ],
+    images: [
+      "https://images.pexels.com/photos/3059660/pexels-photo-3059660.jpeg",
+      "https://images.pexels.com/photos/3059661/pexels-photo-3059661.jpeg"
+    ],
+    category: "floral",
+    tags: ["floral", "feminine", "elegant"],
+    featured: false,
+    price: 55.99
+  },
+  {
+    id: "7",
+    name: "Velvet Orchid",
+    brand: "Floral Essence",
+    description: "A luxurious floral oriental with rich vanilla and orchid notes.",
+    gender: "female",
+    notes: [
+      {
+        type: "top",
+        notes: ["Mandarin", "Honey"]
+      },
+      {
+        type: "middle",
+        notes: ["Orchid", "Magnolia", "Iris"]
+      },
+      {
+        type: "base",
+        notes: ["Vanilla", "Suede", "Sandalwood"]
+      }
+    ],
+    sizes: [
+      { ml: 30, price: 65.99, stock: 35 },
+      { ml: 50, price: 95.99, stock: 25 },
+      { ml: 100, price: 159.99, stock: 15 }
+    ],
+    images: [
+      "https://images.pexels.com/photos/3059670/pexels-photo-3059670.jpeg",
+      "https://images.pexels.com/photos/3059671/pexels-photo-3059671.jpeg"
+    ],
+    category: "floral",
+    tags: ["floral", "oriental", "luxury"],
+    featured: true,
+    price: 65.99
+  },
+  {
+    id: "8",
+    name: "Mountain Pine",
+    brand: "Woodland",
+    description: "A fresh woody fragrance inspired by mountain forests.",
+    gender: "male",
+    notes: [
+      {
+        type: "top",
+        notes: ["Pine", "Eucalyptus"]
+      },
+      {
+        type: "middle",
+        notes: ["Fir Balsam", "Cedar", "Sage"]
+      },
+      {
+        type: "base",
+        notes: ["Pine Needles", "Moss", "Wood Resin"]
+      }
+    ],
+    sizes: [
+      { ml: 50, price: 79.99, stock: 40 },
+      { ml: 100, price: 129.99, stock: 25 }
+    ],
+    images: [
+      "https://images.pexels.com/photos/3059680/pexels-photo-3059680.jpeg",
+      "https://images.pexels.com/photos/3059681/pexels-photo-3059681.jpeg"
+    ],
+    category: "woody",
+    tags: ["woody", "fresh", "outdoor"],
+    featured: false,
+    price: 79.99
   }
 ];
 
@@ -112,6 +283,7 @@ export function getProductById(id: string) {
 export function getFeaturedProducts() {
   return products.filter(product => product.featured);
 }
+
 export function getAllProductIds() {
   return products.map((product) => ({ id: product.id }))
 }
@@ -140,28 +312,26 @@ export function filterProducts(options: {
   }
   
   if (options.minPrice !== undefined) {
-    filtered = filtered.filter(product => 
-      Math.min(...product.sizes.map(s => s.price)) >= (options.minPrice ?? 0)
-    );
+    filtered = filtered.filter(product => product.price >= options.minPrice);
   }
   
   if (options.maxPrice !== undefined) {
-    filtered = filtered.filter(product => 
-      Math.min(...product.sizes.map(s => s.price)) <= (options.maxPrice ?? Infinity)
-    );
+    filtered = filtered.filter(product => product.price <= options.maxPrice);
   }
   
   if (options.sortBy) {
     switch (options.sortBy) {
       case 'price-asc':
-        filtered.sort((a, b) => 
-          Math.min(...a.sizes.map(s => s.price)) - Math.min(...b.sizes.map(s => s.price))
-        );
+        filtered.sort((a, b) => a.price - b.price);
         break;
       case 'price-desc':
-        filtered.sort((a, b) => 
-          Math.min(...b.sizes.map(s => s.price)) - Math.min(...a.sizes.map(s => s.price))
-        );
+        filtered.sort((a, b) => b.price - a.price);
+        break;
+      case 'newest':
+        filtered.sort((a, b) => parseInt(b.id) - parseInt(a.id));
+        break;
+      case 'popular':
+        filtered.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
         break;
     }
   }
