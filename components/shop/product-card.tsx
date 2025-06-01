@@ -12,6 +12,7 @@ import { useCart } from "@/providers/cart-provider"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { CartAnimation } from "@/components/cart/cart-animation"
+import { toast } from "sonner"
 
 interface ProductCardProps {
   product: Product
@@ -51,6 +52,12 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       
       setShowAnimation(true)
       addItem(product)
+      
+      // Show toast notification
+      toast(`Added ${product.name} to cart`, {
+        position: "bottom-left",
+        duration: 2000,
+      })
     }
   }
 

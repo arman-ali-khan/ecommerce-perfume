@@ -16,7 +16,7 @@ export function CartAnimation({ startPosition, endPosition, onComplete, imageUrl
     const timer = setTimeout(() => {
       setIsAnimating(false)
       onComplete()
-    }, 1500)
+    }, 1000) // Reduced from 1500ms to 1000ms for snappier feedback
 
     return () => clearTimeout(timer)
   }, [onComplete])
@@ -25,43 +25,56 @@ export function CartAnimation({ startPosition, endPosition, onComplete, imageUrl
     <AnimatePresence>
       {isAnimating && (
         <motion.div
-          className="fixed z-50 h-24 w-24 rounded-lg overflow-hidden shadow-lg"
+          className="fixed z-50 h-20 w-20 rounded-lg overflow-hidden shadow-lg"
           initial={{ 
             scale: 0,
-            x: startPosition.x - 48, // Center the image (half of width)
-            y: startPosition.y - 48, // Center the image (half of height)
+            x: startPosition.x - 40, // Center the image
+            y: startPosition.y - 40, // Center the image
             opacity: 0,
+            rotate: -10,
           }}
           animate={[
-            // First pop up
+            // Initial pop with rotation
             {
               scale: 1.2,
               opacity: 1,
+              rotate: 0,
               transition: {
                 duration: 0.2,
+                ease: "easeOut"
               }
             },
-            // Then slightly settle
+            // Slight settle
             {
               scale: 1,
               transition: {
-                duration: 0.15,
+                duration: 0.1,
+                ease: "easeOut"
               }
             },
-            // Finally fly to cart
+            // Arc flight to cart
             {
-              scale: 0.2,
+              scale: 0.3,
               x: endPosition.x - 8,
               y: endPosition.y - 8,
               opacity: 0,
               transition: {
-                delay: 0.1,
-                duration: 0.8,
-                ease: [0.4, 0, 0.2, 1], // Custom easing for smooth flight
+                duration: 0.4,
+                ease: [0.32, 0, 0.67, 0], // Custom easing for arc motion
+                opacity: {
+                  duration: 0.3,
+                  delay: 0.1
+                }
               }
             }
           ]}
-          exit={{ scale: 0, opacity: 0 }}
+          exit={{ 
+            scale: 0,
+            opacity: 0,
+            transition: {
+              duration: 0.2
+            }
+          }}
         >
           {imageUrl ? (
             <Image

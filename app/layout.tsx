@@ -10,6 +10,7 @@ import { MobileNav } from '@/components/layout/mobile-nav';
 import { Footer } from '@/components/layout/footer';
 import { CartDrawer } from '@/components/cart/cart-drawer';
 import { FloatingCartButton } from '@/components/cart/floating-cart-button';
+import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -41,6 +42,7 @@ export default function RootLayout({
                 <FloatingCartButton className="hidden lg:block" />
                 <MobileNav />
               </div>
+              <Toaster />
             </CartProvider>
           </Web3Provider>
         </ThemeProvider>
