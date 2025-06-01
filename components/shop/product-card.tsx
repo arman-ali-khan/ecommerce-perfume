@@ -61,6 +61,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           startPosition={animationConfig.startPosition}
           endPosition={animationConfig.endPosition}
           onComplete={() => setShowAnimation(false)}
+          imageUrl={product.images[0]}
         />
       )}
       
