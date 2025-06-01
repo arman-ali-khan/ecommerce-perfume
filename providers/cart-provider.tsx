@@ -65,9 +65,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       
       return [...prev, { product, quantity: 1 }]
     })
-
-    // Open cart drawer when adding items
-    setIsOpen(true)
   }
 
   const removeItem = (productId: string) => {

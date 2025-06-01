@@ -54,7 +54,7 @@ export function CartDrawer() {
 
   return (
     <Sheet open={isOpen} onOpenChange={closeCart}>
-      <SheetContent className="flex w-full flex-col sm:max-w-lg">
+      <SheetContent className="flex w-10/12 flex-col sm:max-w-lg">
         <SheetHeader className="space-y-2.5 pr-6">
           <div className="flex items-center justify-between">
             <SheetTitle className="text-xl">Your Cart</SheetTitle>
