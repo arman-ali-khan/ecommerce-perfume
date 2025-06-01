@@ -1,49 +1,107 @@
-import { CircleDollarSign, Shield, Truck } from "lucide-react"
+import Link from "next/link"
+import Image from "next/image"
+import { Shirt, Watch, Laptop, Home as HomeIcon, ChevronRight, Gem, Wallet } from "lucide-react"
 
-const features = [
+import { 
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+
+const categories = [
   {
-    title: "Crypto Payments",
-    description: "Fast and secure payments using various cryptocurrencies with no intermediaries.",
-    icon: CircleDollarSign,
+    title: "Featured",
+    icon: Gem,
+    href: "/shop?category=featured",
+    description: "Exclusive and limited edition Web3 products",
+    featured: true,
+    image: "https://images.pexels.com/photos/8370752/pexels-photo-8370752.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
   },
   {
-    title: "Blockchain Verification",
-    description: "Each product includes an NFT certificate proving authenticity and ownership.",
-    icon: Shield,
+    title: "Clothing",
+    icon: Shirt,
+    href: "/shop?category=clothing",
+    description: "Blockchain-inspired apparel and fashion items",
+    image: "https://images.pexels.com/photos/7679720/pexels-photo-7679720.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
   },
   {
-    title: "Global Shipping",
-    description: "We ship to over 180 countries with tracking and insurance included.",
-    icon: Truck,
+    title: "Accessories",
+    icon: Watch,
+    href: "/shop?category=accessories",
+    description: "Crypto-themed jewelry and accessories",
+    image: "https://images.pexels.com/photos/5370706/pexels-photo-5370706.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
   },
+  {
+    title: "Electronics",
+    icon: Laptop,
+    href: "/shop?category=electronics",
+    description: "Hardware wallets and digital devices",
+    image: "https://images.pexels.com/photos/8937661/pexels-photo-8937661.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  },
+  {
+    title: "Home",
+    icon: HomeIcon,
+    href: "/shop?category=home",
+    description: "NFT displays and home decor",
+    image: "https://images.pexels.com/photos/3825517/pexels-photo-3825517.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  },
+  {
+    title: "Wallets",
+    icon: Wallet,
+    href: "/shop?category=wallets",
+    description: "Secure cryptocurrency hardware wallets",
+    image: "https://images.pexels.com/photos/8370784/pexels-photo-8370784.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+  }
 ]
 
 export function FeaturesSection() {
   return (
-    <section id="features" className="bg-muted py-16 md:py-24">
+    <section className="py-16 max-w-56 md:py-24">
       <div className="container">
-        <div className="flex flex-col items-center text-center">
+        <div className="flex flex-col items-center text-center mb-12">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            Why Shop With Us
+            Explore Categories
           </h2>
-          <p className="mt-4 max-w-2xl text-muted-foreground">
-            Experience the advantages of our Web3-powered shopping platform
+          <p className="mt-4 max-w-sm text-muted-foreground">
+            Discover our curated collection of Web3-enabled products across different categories
           </p>
         </div>
-        
-        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
-          {features.map((feature) => (
-            <div 
-              key={feature.title} 
-              className="flex flex-col items-center rounded-lg bg-background p-6 text-center shadow-sm transition-all duration-200 hover:shadow-md"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <feature.icon className="h-6 w-6" />
-              </div>
-              <h3 className="mt-4 text-xl font-semibold">{feature.title}</h3>
-              <p className="mt-2 text-muted-foreground">{feature.description}</p>
-            </div>
-          ))}
+
+        <div className=" mx-auto">
+          <Accordion type="single" collapsible className="w-full">
+            {categories.map((category, index) => {
+              const Icon = category.icon
+              return (
+                <AccordionItem key={category.title} value={`item-${index}`}>
+                  <AccordionTrigger className="flex items-center gap-3 text-lg">
+                    <Icon className="h-5 w-5" />
+                    <span>{category.title}</span>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <Link 
+                      href={category.href}
+                      className="group relative flex items-center gap-4 rounded-lg border p-4 transition-colors hover:bg-muted"
+                    >
+                      <div className="relative aspect-square h-20 w-20 overflow-hidden rounded-md">
+                        {/* <Image
+                          src={category.image}
+                          alt={category.title}
+                          fill
+                          className="object-cover transition-transform group-hover:scale-105"
+                        /> */}
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-medium">{category.title}</h3>
+                      
+                      </div>
+                      <ChevronRight className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </AccordionContent>
+                </AccordionItem>
+              )
+            })}
+          </Accordion>
         </div>
       </div>
     </section>

@@ -1,10 +1,15 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
+import { FeaturesSection } from "@/components/home/features-section"
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-black py-20 text-white md:py-32">
+    <section className="flex">
+      <div>
+      </div>
+       <FeaturesSection />
+      <div className="relative flex overflow-hidden bg-black py-20 text-white md:py-32">
       <div className="absolute inset-0 z-10 bg-gradient-to-br from-black/80 via-black/50 to-transparent" />
       <div 
         className="absolute inset-0 opacity-30" 
@@ -39,6 +44,7 @@ export function HeroSection() {
             </Button>
           </div>
         </div>
+      </div>
       </div>
     </section>
   )

@@ -59,6 +59,7 @@ const categories = [
 
 export function FeaturedProducts() {
   const featuredProducts = getFeaturedProducts()
+  const FeaturedIcon = categories[0].icon
   
   return (
     <section className="py-16 md:py-24">
@@ -86,68 +87,21 @@ export function FeaturedProducts() {
                 <div className="absolute inset-0 bg-black/50" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-white">
-                    <categories[0].icon className="mx-auto h-8 w-8 mb-2" />
+                    <FeaturedIcon className="mx-auto h-8 w-8 mb-2" />
                     <h3 className="text-xl font-bold">{categories[0].title}</h3>
+                    // ... existing code ...
                   </div>
                 </div>
+                
               </div>
             </div>
-
-            {/* Category List */}
-            <div className="p-4">
-              <Accordion type="single" collapsible className="w-full">
-                {categories.slice(1).map((category) => {
-                  const Icon = category.icon
-                  return (
-                    <AccordionItem value={category.title} key={category.title}>
-                      <AccordionTrigger className="hover:no-underline">
-                        <div className="flex items-center gap-2">
-                          <Icon className="h-5 w-5" />
-                          <span>{category.title}</span>
-                        </div>
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        <div className="relative aspect-video mb-4 overflow-hidden rounded-md">
-                          <Image
-                            src={category.image}
-                            alt={category.title}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                        <p className="mb-4 text-sm text-muted-foreground">
-                          {category.description}
-                        </p>
-                        <Link
-                          href={category.href}
-                          className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
-                        >
-                          Browse {category.title}
-                          <ChevronRight className="h-4 w-4" />
-                        </Link>
-                      </AccordionContent>
-                    </AccordionItem>
-                  )
-                })}
-              </Accordion>
-            </div>
           </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        </div>
+        <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {featuredProducts.map((product, index) => (
               <ProductCard key={product.id} product={product} index={index} />
             ))}
           </div>
-        </div>
-        
-        <div className="flex justify-center">
-          <Link 
-            href="/shop"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1"
-          >
-            View All Products
-          </Link>
-        </div>
       </div>
     </section>
   )
