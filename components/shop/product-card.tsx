@@ -55,7 +55,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       addItem(product, product.sizes[0].ml)
       
       toast(`Added ${product.name} to cart`, {
-        position: "bottom-left",
+        position: window.innerWidth < 640 ? "top-center" : "bottom-left",
         duration: 2000,
       })
     }

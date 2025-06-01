@@ -31,18 +31,23 @@ export function ProductGrid({ products, filters, searchQuery = "" }: ProductGrid
     if (filters.category && filters.category !== "all") {
       filtered = filtered.filter(p => p.category === filters.category)
     }
+
+    // Apply gender filter
+    if (filters.gender) {
+      filtered = filtered.filter(p => p.gender === filters.gender)
+    }
     
     // Apply price range filter
-    filtered = filtered.filter(p => 
-      p.price >= filters.minPrice && 
-      p.price <= filters.maxPrice
-    )
+    filtered = filtered.filter(p => {
+      const lowestPrice = Math.min(...p.sizes.map(s => s.price))
+      return lowestPrice >= filters.minPrice && lowestPrice <= filters.maxPrice
+    })
     
     // Apply sorting
     if (filters.sortBy === "price-asc") {
-      filtered.sort((a, b) => a.price - b.price)
+      filtered.sort((a, b) => Math.min(...a.sizes.map(s => s.price)) - Math.min(...b.sizes.map(s => s.price)))
     } else if (filters.sortBy === "price-desc") {
-      filtered.sort((a, b) => b.price - a.price)
+      filtered.sort((a, b) => Math.min(...b.sizes.map(s => s.price)) - Math.min(...a.sizes.map(s => s.price)))
     } else if (filters.sortBy === "newest") {
       filtered.sort((a, b) => parseInt(b.id) - parseInt(a.id))
     } else if (filters.sortBy === "popular") {

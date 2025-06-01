@@ -50,10 +50,18 @@ export function ProductFilter({ onFilterChange, initialFilters }: ProductFilterP
 
   const categories: { value: Category; label: string }[] = [
     { value: "all", label: "All Categories" },
-    { value: "clothing", label: "Clothing" },
-    { value: "accessories", label: "Accessories" },
-    { value: "electronics", label: "Electronics" },
-    { value: "home", label: "Home" },
+    { value: "floral", label: "Floral" },
+    { value: "woody", label: "Woody" },
+    { value: "oriental", label: "Oriental" },
+    { value: "fresh", label: "Fresh" },
+    { value: "citrus", label: "Citrus" },
+  ]
+
+  const genderOptions = [
+    { value: "all", label: "All Genders" },
+    { value: "male", label: "Male" },
+    { value: "female", label: "Female" },
+    { value: "unisex", label: "Unisex" },
   ]
 
   const sortOptions = [
@@ -77,6 +85,22 @@ export function ProductFilter({ onFilterChange, initialFilters }: ProductFilterP
             {categories.map((category) => (
               <SelectItem key={category.value} value={category.value}>
                 {category.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        <Select 
+          value={filters.gender || 'all'} 
+          onValueChange={(value) => updateFilters({ gender: value === 'all' ? undefined : value as 'male' | 'female' | 'unisex' })}
+        >
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Gender" />
+          </SelectTrigger>
+          <SelectContent>
+            {genderOptions.map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
               </SelectItem>
             ))}
           </SelectContent>
@@ -122,6 +146,24 @@ export function ProductFilter({ onFilterChange, initialFilters }: ProductFilterP
                       onClick={() => updateFilters({ category: category.value })}
                     >
                       {category.label}
+                    </Button>
+                  </div>
+                ))}
+              </div>
+
+              <Separator className="my-6" />
+              
+              <h4 className="mb-4 text-sm font-medium">Gender</h4>
+              <div className="space-y-2">
+                {genderOptions.map((option) => (
+                  <div key={option.value} className="flex items-center">
+                    <Button
+                      variant={filters.gender === option.value || (option.value === 'all' && !filters.gender) ? "default" : "outline"}
+                      size="sm"
+                      className="w-full justify-start"
+                      onClick={() => updateFilters({ gender: option.value === 'all' ? undefined : option.value as 'male' | 'female' | 'unisex' })}
+                    >
+                      {option.label}
                     </Button>
                   </div>
                 ))}
