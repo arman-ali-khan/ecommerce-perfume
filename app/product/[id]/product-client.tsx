@@ -17,7 +17,8 @@ export default function ProductClient({ product }: { product: any }) {
   const [selectedSize, setSelectedSize] = useState(product.sizes[0].ml)
   const { addItem } = useCart()
 
-  const selectedSizeOption = product.sizes.find((s) => s.ml === selectedSize)
+  const selectedSizeOption = product.sizes.find((s: { ml: number; stock: number }) => s.ml === selectedSize);
+
   const isOutOfStock = selectedSizeOption?.stock === 0
 
   const handleAddToCart = () => {
