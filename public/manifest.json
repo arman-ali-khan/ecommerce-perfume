@@ -6,6 +6,12 @@
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
+  "prefer_related_applications": false,
+  "categories": ["shopping", "e-commerce", "web3"],
+  "orientation": "any",
+  "dir": "auto",
+  "lang": "en",
+  "scope": "/",
   "icons": [
     {
       "src": "/icons/icon-72x72.png",
@@ -54,6 +60,18 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Shop",
+      "url": "/shop",
+      "description": "Browse our products"
+    },
+    {
+      "name": "Cart",
+      "url": "/cart",
+      "description": "View your shopping cart"
     }
   ]
 }
