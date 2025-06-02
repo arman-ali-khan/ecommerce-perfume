@@ -285,11 +285,11 @@ export function getFeaturedProducts() {
 }
 
 export function getAllProductIds() {
-  return products.map((product) => ({ id: product.id }))
+  return products.map((product) => ({ id: product.id }));
 }
 
 export function getProductsByCategory(category: string) {
-  return products.filter(product => 
+  return products.filter(product =>
     category === 'all' ? true : product.category === category
   );
 }
@@ -302,23 +302,25 @@ export function filterProducts(options: {
   sortBy?: string;
 }) {
   let filtered = [...products];
-  
+
   if (options.category && options.category !== 'all') {
     filtered = filtered.filter(product => product.category === options.category);
   }
-  
+
   if (options.gender && options.gender !== 'all') {
     filtered = filtered.filter(product => product.gender === options.gender);
   }
-  
-  if (options.minPrice !== undefined) {
-    filtered = filtered.filter(product => product.price >= options.minPrice);
+
+  if (typeof options.minPrice === 'number') {
+    const min = options.minPrice;
+    filtered = filtered.filter(product => product.price >= min);
   }
-  
-  if (options.maxPrice !== undefined) {
-    filtered = filtered.filter(product => product.price <= options.maxPrice);
+
+  if (typeof options.maxPrice === 'number') {
+    const max = options.maxPrice;
+    filtered = filtered.filter(product => product.price <= max);
   }
-  
+
   if (options.sortBy) {
     switch (options.sortBy) {
       case 'price-asc':
@@ -335,6 +337,6 @@ export function filterProducts(options: {
         break;
     }
   }
-  
+
   return filtered;
 }
