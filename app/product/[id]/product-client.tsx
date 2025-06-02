@@ -50,7 +50,7 @@ export default function ProductClient({ product }: { product: any }) {
           
           {product.images.length > 1 && (
             <div className="flex gap-2 overflow-auto pb-2">
-              {product.images.map((image: { url: string }, index:number) => (
+              {product.images.map((image: string, index: number) => (
                 <button
                   key={index}
                   className={`relative aspect-square h-20 overflow-hidden rounded-md border-2 ${
@@ -97,7 +97,7 @@ export default function ProductClient({ product }: { product: any }) {
               onValueChange={(value) => setSelectedSize(parseInt(value))}
               className="grid grid-cols-3 gap-4"
             >
-              {product.sizes.map((size) => (
+              {product.sizes.map((size: { ml: number; stock: number; price: number }) => (
                 <Label
                   key={size.ml}
                   className={`flex cursor-pointer flex-col items-center justify-between rounded-lg border p-4 hover:bg-accent ${
@@ -137,7 +137,7 @@ export default function ProductClient({ product }: { product: any }) {
           <div className="space-y-4">
             <h3 className="font-medium">Fragrance Notes</h3>
             <div className="grid gap-6 sm:grid-cols-3">
-              {product.notes.map((note) => (
+              {product.notes.map((note: { type: string; notes: string[] }) => (
                 <div key={note.type} className="space-y-2">
                   <h4 className="text-sm font-medium capitalize">{note.type} Notes</h4>
                   <ul className="space-y-1">
