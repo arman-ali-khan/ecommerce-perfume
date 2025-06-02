@@ -50,7 +50,7 @@ export default function ProductClient({ product }: { product: any }) {
           
           {product.images.length > 1 && (
             <div className="flex gap-2 overflow-auto pb-2">
-              {product.images.map((image: { url: string }, index) => (
+              {product.images.map((image: { url: string }, index:number) => (
                 <button
                   key={index}
                   className={`relative aspect-square h-20 overflow-hidden rounded-md border-2 ${
