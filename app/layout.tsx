@@ -11,12 +11,21 @@ import { Footer } from '@/components/layout/footer';
 import { CartDrawer } from '@/components/cart/cart-drawer';
 import { FloatingCartButton } from '@/components/cart/floating-cart-button';
 import { Toaster } from 'sonner';
+import { OfflineToast } from '@/components/pwa/offline-toast';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'CryptoShop | Web3 E-Commerce',
   description: 'Next-generation e-commerce platform with Web3 integration',
+  manifest: '/manifest.json',
+  themeColor: '#000000',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'CryptoShop',
+  },
+  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
 };
 
 export default function RootLayout({
@@ -26,6 +35,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="CryptoShop" />
+      </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Web3Provider>
@@ -39,6 +54,7 @@ export default function RootLayout({
                 <MobileNav />
               </div>
               <Toaster />
+              <OfflineToast />
             </CartProvider>
           </Web3Provider>
         </ThemeProvider>

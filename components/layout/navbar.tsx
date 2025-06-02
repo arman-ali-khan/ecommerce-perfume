@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { useCart } from "@/providers/cart-provider"
+import { InstallPWA } from "@/components/pwa/install-pwa"
 
 export function Navbar() {
   const pathname = usePathname()
@@ -69,6 +70,8 @@ export function Navbar() {
         </nav>
         
         <div className="ml-auto flex items-center gap-2">
+          <InstallPWA />
+          
           <Button
             variant="ghost"
             size="icon"
