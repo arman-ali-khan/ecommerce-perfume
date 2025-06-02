@@ -18,12 +18,10 @@ export const metadata: Metadata = {
   title: 'CryptoShop | Web3 E-Commerce',
   description: 'Next-generation e-commerce platform with Web3 integration',
 };
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+interface FooterProps {
+  className?: string;
+}
+export const Footer: React.FC<FooterProps> = ({ className }) => 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
@@ -37,7 +35,7 @@ export default function RootLayout({
               <div className="relative flex min-h-screen flex-col">
                 <Navbar />
                 <main className="flex-1 pb-[4.5rem] lg:pb-0">{children}</main>
-                <Footer className="hidden lg:block" />
+                    <footer className={clsx("default-footer-classes", className)}>
                 <CartDrawer />
                 <FloatingCartButton className="hidden lg:block" />
                 <MobileNav />
