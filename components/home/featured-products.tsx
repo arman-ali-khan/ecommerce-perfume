@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { getProductsByCategory } from "@/lib/products"
 import { ProductCard } from "@/components/shop/product-card"
+import { ProductCarousel } from "@/components/shop/product-carousel"
 
 const categories = [
   {
@@ -50,10 +51,16 @@ export function FeaturedProducts() {
                 </p>
               </div>
               
-              <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+              {/* Desktop Grid View */}
+              <div className="hidden md:grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                 {products.map((product, index) => (
                   <ProductCard key={product.id} product={product} index={index} />
                 ))}
+              </div>
+
+              {/* Mobile Carousel View */}
+              <div className="md:hidden">
+                <ProductCarousel products={products} />
               </div>
               
               <div className="text-center">
