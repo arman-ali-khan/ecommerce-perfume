@@ -1,13 +1,17 @@
-"use client"
+'use client'
 
-import { ShoppingBag } from "lucide-react"
-import { AnimatePresence, motion } from "framer-motion"
-import { useEffect, useState } from "react"
+import { ShoppingBag } from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
-import { useCart } from "@/providers/cart-provider"
-import { Button } from "@/components/ui/button"
+import { useCart } from '@/providers/cart-provider'
+import { Button } from '@/components/ui/button'
 
-export function FloatingCartButton() {
+interface FloatingCartButtonProps {
+  className?: string
+}
+
+export function FloatingCartButton({ className }: FloatingCartButtonProps) {
   const { toggleCart, totalItems } = useCart()
   const [prevCount, setPrevCount] = useState(0)
   const [animate, setAnimate] = useState(false)
@@ -29,7 +33,7 @@ export function FloatingCartButton() {
   if (!mounted) return null
 
   return (
-    <div className="sm:flex fixed hidden bottom-1/2 right-0 z-50">
+    <div className={`sm:flex fixed hidden bottom-1/2 right-0 z-50 ${className ?? ''}`}>
       <AnimatePresence>
         {totalItems > 0 && (
           <motion.div
@@ -45,7 +49,6 @@ export function FloatingCartButton() {
               aria-label="Open cart"
             >
               <ShoppingBag className="h-6 w-6" />
-              
               <span className="absolute -top-2 -left-0 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-semibold ">
                 <motion.span
                   animate={animate ? { scale: [1, 1.3, 1] } : {}}
