@@ -43,10 +43,10 @@ export function FeaturedProducts() {
           return (
             <div key={category.id} className="space-y-8">
               <div className="space-y-2">
-                <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
+                <h2 className="text-xs sm:text-2xl font-bold tracking-tight md:text-3xl">
                   {category.title}
                 </h2>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground text-2xl">
                   {category.description}
                 </p>
               </div>
@@ -58,11 +58,9 @@ export function FeaturedProducts() {
                 ))}
               </div>
 
-              {/* Mobile Grid View */}
-              <div className="grid grid-cols-2 gap-4 md:hidden">
-                {products.slice(0, 4).map((product, index) => (
-                  <ProductCard key={product.id} product={product} index={index} />
-                ))}
+              {/* Mobile Carousel View */}
+              <div className="md:hidden">
+                <ProductCarousel products={products} />
               </div>
               
               <div className="text-center">

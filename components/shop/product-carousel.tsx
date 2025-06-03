@@ -17,7 +17,7 @@ export function ProductCarousel({ products }: ProductCarouselProps) {
       spaceBetween={16}
       slidesPerView={1.2}
       breakpoints={{
-        480: {
+        350: {
           slidesPerView: 2.2
         }
       }}

@@ -113,15 +113,15 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
         </div>
 
         <div className="flex flex-1 flex-col p-4">
-          <div className="mb-2 text-sm text-muted-foreground">{product.brand}</div>
-          <h3 className="line-clamp-1 font-medium">{product.name}</h3>
-          <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
+          <div className="mb-2 text-muted-foreground text-xs sm:text-sm">{product.brand}</div>
+          <h3 className="line-clamp-1 font-medium text-xs sm:text-sm">{product.name}</h3>
+          <p className="mt-1 line-clamp-2 text-xs sm:text-sm text-muted-foreground">
             {product.description}
           </p>
           <div className="mt-auto flex items-center justify-between gap-2 pt-4">
             <div>
-              <span className="font-semibold">${lowestPrice.toFixed(2)}</span>
-              <span className="text-sm text-muted-foreground"> / {product.sizes[0].ml}ml</span>
+              <span className="text-sm sm:text-md font-semibold">${lowestPrice.toFixed(2)}</span>
+              <span className="text-xs sm:text-sm text-muted-foreground"> / {product.sizes[0].ml}ml</span>
             </div>
             <Button
               ref={buttonRef}
