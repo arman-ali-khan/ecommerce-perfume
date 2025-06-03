@@ -58,9 +58,11 @@ export function FeaturedProducts() {
                 ))}
               </div>
 
-              {/* Mobile Carousel View */}
-              <div className="md:hidden">
-                <ProductCarousel products={products} />
+              {/* Mobile Grid View */}
+              <div className="grid grid-cols-2 gap-4 md:hidden">
+                {products.slice(0, 4).map((product, index) => (
+                  <ProductCard key={product.id} product={product} index={index} />
+                ))}
               </div>
               
               <div className="text-center">
