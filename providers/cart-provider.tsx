@@ -6,8 +6,8 @@ import React, { createContext, useContext, useEffect, useState } from "react"
 interface CartContextType {
   items: CartItem[]
   addItem: (product: Product, selectedSize: number) => void
-  removeItem: (productId: string) => void
-  updateQuantity: (productId: string, quantity: number) => void
+  removeItem: (productId: string, selectedSize: number) => void
+  updateQuantity: (productId: string, selectedSize: number, quantity: number) => void
   clearCart: () => void
   isOpen: boolean
   toggleCart: () => void
@@ -69,19 +69,21 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     })
   }
 
-  const removeItem = (productId: string) => {
-    setItems(prev => prev.filter(item => item.product.id !== productId))
+  const removeItem = (productId: string, selectedSize: number) => {
+    setItems(prev => prev.filter(item => 
+      !(item.product.id === productId && item.selectedSize === selectedSize)
+    ))
   }
 
-  const updateQuantity = (productId: string, quantity: number) => {
+  const updateQuantity = (productId: string, selectedSize: number, quantity: number) => {
     if (quantity <= 0) {
-      removeItem(productId)
+      removeItem(productId, selectedSize)
       return
     }
 
     setItems(prev => 
       prev.map(item => 
-        item.product.id === productId 
+        item.product.id === productId && item.selectedSize === selectedSize
           ? { ...item, quantity }
           : item
       )

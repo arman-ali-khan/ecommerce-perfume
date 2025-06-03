@@ -42,7 +42,7 @@ export function CartItem({ item }: CartItemProps) {
             variant="ghost"
             size="icon"
             className="h-8 w-8"
-            onClick={() => removeItem(product.id)}
+            onClick={() => removeItem(product.id, selectedSize)}
           >
             <X className="h-4 w-4" />
             <span className="sr-only">Remove</span>
@@ -54,7 +54,7 @@ export function CartItem({ item }: CartItemProps) {
             variant="outline"
             size="icon"
             className="h-8 w-8 rounded-full"
-            onClick={() => updateQuantity(product.id, quantity - 1)}
+            onClick={() => updateQuantity(product.id, selectedSize, quantity - 1)}
             disabled={quantity <= 1}
           >
             <Minus className="h-3 w-3" />
@@ -67,7 +67,7 @@ export function CartItem({ item }: CartItemProps) {
             variant="outline"
             size="icon"
             className="h-8 w-8 rounded-full"
-            onClick={() => updateQuantity(product.id, quantity + 1)}
+            onClick={() => updateQuantity(product.id, selectedSize, quantity + 1)}
             disabled={quantity >= (size?.stock || 0)}
           >
             <Plus className="h-3 w-3" />
