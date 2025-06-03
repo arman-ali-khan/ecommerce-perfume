@@ -9,44 +9,44 @@ const categories = [
     title: "Featured",
     icon: Gem,
     href: "/shop?category=featured",
-    description: "Exclusive and limited edition Web3 products",
+    description: "Our most popular and exclusive fragrances",
     featured: true,
-    subcategories: ["Limited Editions", "New Arrivals", "Best Sellers"]
+    subcategories: ["New Arrivals", "Best Sellers", "Limited Editions"]
   },
   {
-    title: "Clothing",
-    icon: Shirt,
-    href: "/shop?category=clothing",
-    description: "Blockchain-inspired apparel and fashion items",
-    subcategories: ["T-Shirts", "Hoodies", "Jackets", "Accessories"]
-  },
-  {
-    title: "Accessories",
+    title: "Floral",
     icon: Watch,
-    href: "/shop?category=accessories",
-    description: "Crypto-themed jewelry and accessories",
-    subcategories: ["Watches", "Jewelry", "Bags", "Other"]
+    href: "/shop?category=floral",
+    description: "Delicate and romantic scents featuring beautiful flowers",
+    subcategories: ["Rose", "Jasmine", "Lily", "Mixed Florals"]
   },
   {
-    title: "Electronics",
+    title: "Woody",
     icon: Laptop,
-    href: "/shop?category=electronics",
-    description: "Hardware wallets and digital devices",
-    subcategories: ["Hardware Wallets", "Mining Equipment", "Displays"]
+    href: "/shop?category=woody",
+    description: "Warm and sophisticated scents with precious woods",
+    subcategories: ["Sandalwood", "Cedar", "Oud", "Pine"]
   },
   {
-    title: "Home",
+    title: "Oriental",
     icon: HomeIcon,
-    href: "/shop?category=home",
-    description: "NFT displays and home decor",
-    subcategories: ["Wall Art", "Lighting", "Decorative Items"]
+    href: "/shop?category=oriental",
+    description: "Rich and exotic scents with spices and resins",
+    subcategories: ["Spicy", "Amber", "Vanilla", "Incense"]
   },
   {
-    title: "Wallets",
+    title: "Fresh",
+    icon: Shirt,
+    href: "/shop?category=fresh",
+    description: "Clean and invigorating scents for everyday wear",
+    subcategories: ["Citrus", "Aquatic", "Green", "Aromatic"]
+  },
+  {
+    title: "Citrus",
     icon: Wallet,
-    href: "/shop?category=wallets",
-    description: "Secure cryptocurrency hardware wallets",
-    subcategories: ["Cold Storage", "Hardware Wallets", "Accessories"]
+    href: "/shop?category=citrus",
+    description: "Bright and energetic scents with citrus notes",
+    subcategories: ["Bergamot", "Lemon", "Orange", "Grapefruit"]
   }
 ]
 
@@ -106,20 +106,20 @@ export function HeroSection() {
             <div className="container relative z-20">
               <div className="mx-auto max-w-3xl text-center">
                 <Badge variant="web3" className="mb-5 px-3 py-1.5 text-sm font-medium">
-                  Web3 Shopping Experience
+                  Luxury Fragrances
                 </Badge>
                 
                 <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-                  The Future of <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">Shopping</span> Is Here
+                  Discover Your <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">Signature</span> Scent
                 </h1>
                 
                 <p className="mx-auto mb-10 max-w-2xl text-xl text-zinc-400">
-                  Shop with cryptocurrency, verify authenticity with blockchain, and own digital twins of your physical products.
+                  Explore our curated collection of premium fragrances, from floral elegance to woody sophistication.
                 </p>
                 
                 <div className="flex flex-wrap justify-center gap-4">
                   <Button asChild size="lg" className="rounded-full px-8">
-                    <Link href="/shop">Explore Products</Link>
+                    <Link href="/shop">Shop Now</Link>
                   </Button>
                   
                   <Button asChild size="lg" variant="outline" className="rounded-full border-white/20 bg-white/10 px-8 backdrop-blur hover:bg-white/20">

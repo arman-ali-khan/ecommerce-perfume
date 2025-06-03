@@ -1,6 +1,6 @@
 "use client"
 
-import { MoonIcon, SearchIcon, ShoppingCartIcon, SunIcon } from "lucide-react"
+import { MoonIcon, SearchIcon, ShoppingCartIcon, SunIcon, UserIcon } from "lucide-react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
@@ -63,6 +63,7 @@ export function Navbar() {
                   ? "text-foreground font-semibold"
                   : "text-foreground/60"
               }`}
+            
             >
               {item.label}
             </Link>
@@ -97,6 +98,15 @@ export function Navbar() {
               )}
             </Button>
           )}
+          
+          <Button 
+            variant="ghost" 
+            size="icon"
+            onClick={() => router.push("/profile")}
+          >
+            <UserIcon className="h-5 w-5" />
+            <span className="sr-only">Profile</span>
+          </Button>
           
           <Button 
             variant="outline" 
