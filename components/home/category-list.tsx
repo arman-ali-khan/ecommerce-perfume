@@ -39,7 +39,8 @@ export function CategoryList() {
                 <Image
                   src={category.image}
                   alt={category.name}
-                  fill
+                  width={48}
+                  height={48}
                   className="object-cover transition-transform duration-300 group-hover:scale-110"
                 />
               </div>

@@ -16,14 +16,19 @@ export function CartDrawer() {
   const router = useRouter()
   const { isOpen, closeCart, items, subtotal, clearCart } = useCart()
   const [mounted, setMounted] = useState(false)
+  const [checkoutLoading, setCheckoutLoading] = useState(false)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
+    setCheckoutLoading(true)
+    // Simulate checkout process
+    await new Promise(resolve => setTimeout(resolve, 1000))
     router.push("/checkout")
     closeCart()
+    setCheckoutLoading(false)
   }
 
   if (!mounted) return null
@@ -70,8 +75,13 @@ export function CartDrawer() {
               <Button 
                 className="w-full" 
                 onClick={handleCheckout}
+                disabled={checkoutLoading}
               >
-                Proceed to Checkout • ${subtotal.toFixed(2)}
+                {checkoutLoading ? (
+                  "Processing..."
+                ) : (
+                  `Proceed to Checkout • $${subtotal.toFixed(2)}`
+                )}
               </Button>
             </div>
           </>

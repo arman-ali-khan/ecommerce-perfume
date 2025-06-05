@@ -43,8 +43,9 @@ export default function ProductClient({ product }: { product: any }) {
             <Image
               src={product.images[currentImageIndex]}
               alt={product.name}
-              fill
-              className="object-cover"
+              width={600}
+              height={600}
+              className="object-cover w-full h-full"
             />
           </div>
           
@@ -61,7 +62,8 @@ export default function ProductClient({ product }: { product: any }) {
                   <Image
                     src={image}
                     alt={`${product.name} thumbnail ${index + 1}`}
-                    fill
+                    width={80}
+                    height={80}
                     className="object-cover"
                   />
                 </button>

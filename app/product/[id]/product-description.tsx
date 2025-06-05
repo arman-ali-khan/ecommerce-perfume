@@ -46,8 +46,9 @@ export function ProductDescription({ product }: ProductDescriptionProps) {
                   <Image
                     src={product.images[0]}
                     alt={product.name}
-                    fill
-                    className="object-cover"
+                    width={600}
+                    height={600}
+                    className="object-cover w-full h-full"
                   />
                 </div>
               </div>
@@ -80,7 +81,8 @@ export function ProductDescription({ product }: ProductDescriptionProps) {
                   <Image
                     src="https://images.pexels.com/photos/3059398/pexels-photo-3059398.jpeg"
                     alt="Ingredients"
-                    fill
+                    width={600}
+                    height={600}
                     className="object-cover"
                   />
                 </div>
@@ -107,7 +109,8 @@ export function ProductDescription({ product }: ProductDescriptionProps) {
                       <Image
                         src={image}
                         alt={`Inspiration ${index + 1}`}
-                        fill
+                        width={400}
+                        height={400}
                         className="object-cover transition-transform hover:scale-105"
                       />
                     </div>

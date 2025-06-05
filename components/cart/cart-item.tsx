@@ -24,7 +24,8 @@ export function CartItem({ item }: CartItemProps) {
         <Image 
           src={product.images[0]} 
           alt={product.name}
-          fill
+          width={80}
+          height={80}
           className="object-cover transition-all hover:scale-105"
         />
       </div>

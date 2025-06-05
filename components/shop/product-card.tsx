@@ -23,6 +23,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const { addItem } = useCart()
   const buttonRef = useRef<HTMLButtonElement>(null)
   const [showAnimation, setShowAnimation] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [animationConfig, setAnimationConfig] = useState<{
     startPosition: { x: number; y: number }
     endPosition: { x: number; y: number }
@@ -31,8 +32,9 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const lowestPrice = Math.min(...product.sizes.map(s => s.price))
   const isOutOfStock = product.sizes.every(s => s.stock <= 0)
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     if (!buttonRef.current) return
+    setLoading(true)
 
     const buttonRect = buttonRef.current.getBoundingClientRect()
     const cartButton = document.querySelector('[data-cart-button]')
@@ -54,11 +56,15 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
       setShowAnimation(true)
       addItem(product, product.sizes[0].ml)
       
-      toast(`Added ${product.name} to cart`, {
+      // Simulate a delay for better UX
+      await new Promise(resolve => setTimeout(resolve, 500))
+      
+      toast.success(`Added ${product.name} to cart`, {
         position: window.innerWidth < 640 ? "top-center" : "bottom-left",
         duration: 2000,
       })
     }
+    setLoading(false)
   }
 
   return (
@@ -83,8 +89,9 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             <Image
               src={product.images[0]}
               alt={product.name}
-              fill
-              className="object-cover transition-all duration-300 group-hover:scale-105"
+              width={400} 
+              height={400}
+              className="object-cover w-full h-full transition-all duration-300 group-hover:scale-105"
             />
           </Link>
           
@@ -103,10 +110,10 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
               isOutOfStock && "cursor-not-allowed opacity-50",
               "hidden"
             )}
-            disabled={isOutOfStock}
+            disabled={isOutOfStock || loading}
             onClick={handleAddToCart}
           >
-            Add cart
+            {loading ? "Adding..." : "Add cart"}
             <ShoppingBag className="h-4 w-4" />
             <span className="sr-only">Add to cart</span>
           </Button>
@@ -127,10 +134,10 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
               ref={buttonRef}
               size="sm"
               className="lg:hidden"
-              disabled={isOutOfStock}
+              disabled={isOutOfStock || loading}
               onClick={handleAddToCart}
             >
-              Add
+              {loading ? "Adding..." : "Add"}
             </Button>
           </div>
         </div>

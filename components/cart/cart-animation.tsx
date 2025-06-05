@@ -79,7 +79,8 @@ export function CartAnimation({
             <Image
               src={imageUrl}
               alt="Product"
-              fill
+              width={80}
+              height={80}
               className="object-cover"
             />
           ) : (
