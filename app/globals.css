@@ -6,6 +6,19 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -44,6 +57,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -78,13 +92,42 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "kern" 1;
+    text-size-adjust: 100%;
   }
   .container {
     @apply mx-auto max-w-[1400px] px-4;
+  }
+  
+  /* Optimize paint and layout operations */
+  img {
+    content-visibility: auto;
+    contain: paint;
+  }
+  
+  /* Reduce layout shifts */
+  img, video {
+    @apply aspect-[attr(width)/attr(height)] overflow-clip;
   }
 }
 
 /* Safe area insets for mobile devices */
 .safe-area-inset-bottom {
   height: env(safe-area-inset-bottom);
+}
+
+/* Optimize animations */
+@layer utilities {
+  .animation-reduce {
+    @apply motion-reduce:transform-none motion-reduce:transition-none;
+  }
+}
+
+/* Optimize image loading */
+.image-loading {
+  @apply blur-[2px] grayscale;
+}
+
+.image-loaded {
+  @apply blur-0 grayscale-0 transition-all duration-300;
 }

@@ -1,4 +1,4 @@
-import { Inter } from 'next/font/google';
+
 import { Metadata } from 'next';
 
 import './globals.css';
@@ -13,7 +13,7 @@ import { FloatingCartButton } from '@/components/cart/floating-cart-button';
 import { Toaster } from 'sonner';
 import { OfflineToast } from '@/components/pwa/offline-toast';
 
-const inter = Inter({ subsets: ['latin'] });
+
 
 export const metadata: Metadata = {
   title: 'CryptoShop | Web3 E-Commerce',
@@ -25,7 +25,18 @@ export const metadata: Metadata = {
     statusBarStyle: 'default',
     title: 'CryptoShop',
   },
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
+  other: {
+    'apple-mobile-web-app-capable': 'yes',
+    'mobile-web-app-capable': 'yes',
+    'apple-touch-fullscreen': 'yes',
+    'format-detection': 'telephone=no',
+  },
 };
 
 export default function RootLayout({
@@ -36,12 +47,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://images.pexels.com" />
+        <link rel="dns-prefetch" href="https://images.pexels.com" />
+        
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="CryptoShop" />
+        
+        <link rel="preload" as="image" href="https://images.pexels.com/photos/3965557/pexels-photo-3965557.jpeg" />
       </head>
-      <body className={inter.className}>
+      <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Web3Provider>
             <CartProvider>
