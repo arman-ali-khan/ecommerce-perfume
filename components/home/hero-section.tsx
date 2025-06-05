@@ -1,14 +1,17 @@
 "use client"
+
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { Shirt, Watch, Laptop, Home as HomeIcon, ChevronRight, Gem, Wallet } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, Pagination } from 'swiper/modules'
-
-import 'swiper/css'
-import 'swiper/css/pagination'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 
 const categories = [
   {
@@ -122,51 +125,49 @@ export function HeroSection() {
 
         {/* Hero Content */}
         <div className="relative">
-          <Swiper
-            modules={[Autoplay, Pagination]}
-            pagination={{ clickable: true }}
-            autoplay={{ delay: 5000, disableOnInteraction: false }}
-            loop={true}
-            className="w-full"
-          >
-            {heroSlides.map((slide, index) => (
-              <SwiperSlide key={index}>
-                <div className="relative flex overflow-hidden bg-black text-white">
-                  <div className="absolute inset-0 z-10 bg-gradient-to-br from-black/80 via-black/50 to-transparent" />
-                  <div 
-                    className="absolute inset-0 opacity-70" 
-                    style={{
-                      backgroundImage: `url('${slide.image}')`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center"
-                    }}
-                  />
-                  
-                  <div className="container relative z-20 py-20 md:py-32">
-                    <div className="mx-auto max-w-3xl text-center">
-                      <Badge variant="web3" className="mb-5 px-3 py-1.5 text-sm font-medium">
-                        {slide.badge}
-                      </Badge>
-                      
-                      <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-                        {slide.title}
-                      </h1>
-                      
-                      <p className="mx-auto mb-10 max-w-2xl text-xl text-zinc-400">
-                        {slide.description}
-                      </p>
-                      
-                      <div className="flex flex-wrap justify-center gap-4">
-                        <Button asChild size="lg" className="rounded-full px-8">
-                          <Link href={slide.link}>Shop Now</Link>
-                        </Button>
+          <Carousel className="w-full" opts={{ loop: true }}>
+            <CarouselContent>
+              {heroSlides.map((slide, index) => (
+                <CarouselItem key={index}>
+                  <div className="relative flex w-auto overflow-hidden bg-black text-white">
+                    <div className="absolute inset-0 z-10 bg-gradient-to-br from-black/80 via-black/50 to-transparent" />
+                    <div 
+                      className="absolute inset-0 opacity-70" 
+                      style={{
+                        backgroundImage: `url('${slide.image}')`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center"
+                      }}
+                    />
+                    
+                    <div className="container px-0 relative z-20 py-20 md:py-32">
+                      <div className="mx-auto max-w-3xl text-center">
+                        <Badge variant="web3" className="mb-5 px-3 py-1.5 text-sm font-medium">
+                          {slide.badge}
+                        </Badge>
+                        
+                        <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+                          {slide.title}
+                        </h1>
+                        
+                        <p className="mx-auto mb-10 max-w-2xl text-xl text-zinc-400">
+                          {slide.description}
+                        </p>
+                        
+                        <div className="flex flex-wrap justify-center gap-4">
+                          <Button asChild size="lg" className="rounded-full px-8">
+                            <Link href={slide.link}>Shop Now</Link>
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-4" />
+            <CarouselNext className="right-4" />
+          </Carousel>
         </div>
       </div>
     </section>
