@@ -140,7 +140,7 @@ export function CategoryShowcaseV3() {
                   onClick={() => handleCategoryClick(category)}
                   onMouseEnter={() => setHoveredCategory(category.id)}
                   onMouseLeave={() => setHoveredCategory(null)}
-                  className={`w-full text-left p-6 rounded-2xl transition-all duration-300 ${
+                  className={`w-full text-left p-4 lg:p-6 rounded-2xl transition-all duration-300 ${
                     isActive 
                       ? 'bg-white shadow-xl border-2 border-primary/20' 
                       : 'bg-white/50 hover:bg-white hover:shadow-lg border-2 border-transparent'
@@ -148,19 +148,19 @@ export function CategoryShowcaseV3() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-center lg:items-start gap-4">
                     <div className={`p-3 rounded-xl bg-gradient-to-r ${category.color} ${
                       isActive || isHovered ? 'scale-110' : ''
                     } transition-transform duration-300`}>
                       <Icon className="h-6 w-6 text-white" />
                     </div>
                     <div className="flex-1">
-                      <h3 className={`text-xl font-bold mb-2 ${
+                      <h3 className={`text-lg lg:text-xl font-bold mb-2 ${
                         isActive ? 'text-primary' : 'text-gray-900'
                       }`}>
                         {category.name}
                       </h3>
-                      <p className="text-muted-foreground mb-3">
+                      <p className="hidden lg:block text-muted-foreground mb-3">
                         {category.description}
                       </p>
                       <Badge variant="secondary" className="text-xs">
@@ -247,7 +247,7 @@ export function CategoryShowcaseV3() {
                   {categoryProducts.length > 0 && (
                     <div className="mb-8">
                       <h4 className="text-lg font-semibold mb-4">Available Products:</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {categoryProducts.map((product, index) => (
                           <motion.div
                             key={product.id}
