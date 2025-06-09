@@ -1,6 +1,6 @@
 "use client"
 
-import { MoonIcon, SearchIcon, ShoppingCartIcon, SunIcon, UserIcon } from "lucide-react"
+import { MoonIcon, ShoppingCartIcon, SunIcon, UserIcon } from "lucide-react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useTheme } from "next-themes"
@@ -9,6 +9,7 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { useCart } from "@/providers/cart-provider"
 import { InstallPWA } from "@/components/pwa/install-pwa"
+import { SearchTrigger } from "@/components/search/search-trigger"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -68,10 +69,6 @@ export function Navbar() {
     { label: "Shop", path: "/shop" },
     { label: "Web3 View", path: "/product-web3/1" },
   ]
-
-  const handleSearchClick = () => {
-    router.push("/shop?search=true")
-  }
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur transition-all">
@@ -139,15 +136,8 @@ export function Navbar() {
         <div className="ml-auto flex items-center gap-2">
           <InstallPWA />
           
-          <Button
-            variant="ghost"
-            size="icon"
-            className="hidden lg:flex"
-            onClick={handleSearchClick}
-          >
-            <SearchIcon className="h-5 w-5" />
-            <span className="sr-only">Search</span>
-          </Button>
+          {/* Desktop Search */}
+          <SearchTrigger className="hidden lg:flex" />
 
           {mounted && (
             <Button

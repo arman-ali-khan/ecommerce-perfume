@@ -7,10 +7,11 @@ import { cn } from "@/lib/utils"
 import { useCart } from "@/providers/cart-provider"
 import { useState } from "react"
 import { CategoriesDrawer } from "./categories-drawer"
+import { SearchTrigger } from "@/components/search/search-trigger"
 
 const items = [
   { label: "Home", icon: Home, href: "/" },
-  { label: "Search", icon: Search, href: "/shop?search=true" },
+  { label: "Search", icon: Search, href: "#", isSearch: true },
   { label: "Cart", icon: ShoppingBag, href: "#", isCart: true },
   { label: "Account", icon: User, href: "#" },
   { label: "Menu", icon: Menu, href: "#", isMenu: true },
@@ -53,6 +54,25 @@ export function MobileNav() {
                   )}
                   <span className="text-xs text-muted-foreground">{item.label}</span>
                 </button>
+              )
+            }
+
+            if (item.isSearch) {
+              return (
+                <SearchTrigger
+                  key="search"
+                  variant="ghost"
+                  size="default"
+                  className="flex h-12 w-12 flex-col items-center justify-center gap-1 p-0"
+                >
+                  <Icon
+                    className={cn(
+                      "h-6 w-6 transition-colors",
+                      isActive ? "text-foreground" : "text-muted-foreground"
+                    )}
+                  />
+                  <span className="text-xs text-muted-foreground">{item.label}</span>
+                </SearchTrigger>
               )
             }
 

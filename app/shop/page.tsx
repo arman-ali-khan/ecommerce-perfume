@@ -2,13 +2,12 @@
 
 import { useCallback, useEffect, useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import { Search } from "lucide-react"
 
 import { FilterOptions } from "@/types"
 import { getProducts } from "@/lib/products"
 import { ProductFilter } from "@/components/shop/product-filter"
 import { ProductGrid } from "@/components/shop/product-grid"
-import { Input } from "@/components/ui/input"
+import { SearchDialog } from "@/components/search/search-dialog"
 
 export default function ShopPage() {
   const router = useRouter()
@@ -48,28 +47,9 @@ export default function ShopPage() {
       <div className="mb-8 space-y-4">
         <h1 className="text-3xl font-bold tracking-tight md:text-4xl">Shop</h1>
         <p className="text-lg text-muted-foreground">
-          Browse our collection of blockchain-inspired products
+          Browse our collection of premium fragrances
         </p>
       </div>
-      
-      {showSearch && (
-        <div className="mb-8 relative">
-          <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-          <Input
-            type="search"
-            placeholder="Search products..."
-            className="pl-10 w-full"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <button
-            onClick={handleSearchClose}
-            className="absolute right-3 top-3 text-sm text-muted-foreground hover:text-foreground"
-          >
-            Cancel
-          </button>
-        </div>
-      )}
       
       <div className="mb-8">
         <ProductFilter 
@@ -82,6 +62,16 @@ export default function ShopPage() {
         products={products} 
         filters={filters}
         searchQuery={searchQuery} 
+      />
+
+      {/* Search Dialog for URL-triggered search */}
+      <SearchDialog 
+        open={showSearch} 
+        onOpenChange={(open) => {
+          if (!open) {
+            handleSearchClose()
+          }
+        }} 
       />
     </div>
   )
