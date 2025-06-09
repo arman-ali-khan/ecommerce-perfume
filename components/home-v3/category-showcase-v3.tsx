@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Heart, Leaf, Crown, Zap, Sun, Sparkles } from "lucide-react"
+import { getProductsByCategory } from "@/lib/products"
+import { ProductCard } from "@/components/shop/product-card"
 
 const categories = [
   {
@@ -87,6 +89,13 @@ export function CategoryShowcaseV3() {
   const [activeCategory, setActiveCategory] = useState(categories[0])
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null)
 
+  // Get products for the active category
+  const categoryProducts = getProductsByCategory(activeCategory.id).slice(0, 3)
+
+  const handleCategoryClick = (category: typeof categories[0]) => {
+    setActiveCategory(category)
+  }
+
   return (
     <section className="py-32 bg-gradient-to-br from-gray-50 via-white to-gray-50">
       <div className="container">
@@ -128,7 +137,7 @@ export function CategoryShowcaseV3() {
               return (
                 <motion.button
                   key={category.id}
-                  onClick={() => setActiveCategory(category)}
+                  onClick={() => handleCategoryClick(category)}
                   onMouseEnter={() => setHoveredCategory(category.id)}
                   onMouseLeave={() => setHoveredCategory(null)}
                   className={`w-full text-left p-6 rounded-2xl transition-all duration-300 ${
@@ -233,6 +242,25 @@ export function CategoryShowcaseV3() {
                       ))}
                     </div>
                   </div>
+
+                  {/* Product Grid */}
+                  {categoryProducts.length > 0 && (
+                    <div className="mb-8">
+                      <h4 className="text-lg font-semibold mb-4">Available Products:</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {categoryProducts.map((product, index) => (
+                          <motion.div
+                            key={product.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, delay: index * 0.1 }}
+                          >
+                            <ProductCard product={product} index={index} />
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
                   {/* CTA */}
                   <Button asChild size="lg" className={`bg-gradient-to-r ${activeCategory.color} hover:opacity-90 text-white rounded-full px-8`}>

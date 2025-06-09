@@ -9,6 +9,48 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { useCart } from "@/providers/cart-provider"
 import { InstallPWA } from "@/components/pwa/install-pwa"
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu"
+import { cn } from "@/lib/utils"
+
+const categories = [
+  {
+    title: "Floral",
+    href: "/shop?category=floral",
+    description: "Romantic and feminine fragrances featuring beautiful flowers"
+  },
+  {
+    title: "Woody",
+    href: "/shop?category=woody",
+    description: "Warm and sophisticated scents with precious woods"
+  },
+  {
+    title: "Oriental",
+    href: "/shop?category=oriental",
+    description: "Rich and exotic scents with spices and resins"
+  },
+  {
+    title: "Fresh",
+    href: "/shop?category=fresh",
+    description: "Clean and invigorating scents for everyday wear"
+  },
+  {
+    title: "Citrus",
+    href: "/shop?category=citrus",
+    description: "Bright and energetic scents with citrus notes"
+  },
+  {
+    title: "Featured",
+    href: "/shop?category=featured",
+    description: "Our most popular and exclusive fragrances"
+  }
+]
 
 export function Navbar() {
   const pathname = usePathname()
@@ -64,11 +106,34 @@ export function Navbar() {
                   ? "text-foreground font-semibold"
                   : "text-foreground/60"
               }`}
-            
             >
               {item.label}
             </Link>
           ))}
+          
+          {/* Categories Dropdown */}
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-sm font-medium">
+                  Categories
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                    {categories.map((category) => (
+                      <ListItem
+                        key={category.title}
+                        title={category.title}
+                        href={category.href}
+                      >
+                        {category.description}
+                      </ListItem>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
         </nav>
         
         <div className="ml-auto flex items-center gap-2">
@@ -127,5 +192,31 @@ export function Navbar() {
         </div>
       </div>
     </header>
+  )
+}
+
+const ListItem = ({ className, title, children, ...props }: {
+  className?: string
+  title: string
+  children: React.ReactNode
+  href: string
+}) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <Link
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className
+          )}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </Link>
+      </NavigationMenuLink>
+    </li>
   )
 }

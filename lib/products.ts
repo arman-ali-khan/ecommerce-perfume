@@ -289,9 +289,15 @@ export function getAllProductIds() {
 }
 
 export function getProductsByCategory(category: string) {
-  return products.filter(product =>
-    category === 'all' ? true : product.category === category
-  );
+  if (category === 'all') {
+    return products;
+  }
+  
+  if (category === 'featured') {
+    return products.filter(product => product.featured);
+  }
+  
+  return products.filter(product => product.category === category);
 }
 
 export function filterProducts(options: {
@@ -304,7 +310,11 @@ export function filterProducts(options: {
   let filtered = [...products];
 
   if (options.category && options.category !== 'all') {
-    filtered = filtered.filter(product => product.category === options.category);
+    if (options.category === 'featured') {
+      filtered = filtered.filter(product => product.featured);
+    } else {
+      filtered = filtered.filter(product => product.category === options.category);
+    }
   }
 
   if (options.gender && options.gender !== 'all') {
