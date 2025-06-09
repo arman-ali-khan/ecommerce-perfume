@@ -34,7 +34,6 @@ export const metadata: Metadata = {
   other: {
     'apple-mobile-web-app-capable': 'yes',
     'mobile-web-app-capable': 'yes',
-    'apple-touch-fullscreen': 'yes',
     'format-detection': 'telephone=no',
   },
 };

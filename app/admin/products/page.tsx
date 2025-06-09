@@ -1,5 +1,4 @@
-import { useState } from "react"
-import { DataTable } from "@/components/admin/products/data-table"
+import { DataTable } from "@/components/admin/shared/data-table"
 import { columns } from "@/components/admin/products/columns"
 import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
@@ -18,7 +17,7 @@ export default function ProductsPage() {
           </Button>
         </ProductDialog>
       </div>
-      <DataTable columns={columns} data={products} />
+      <DataTable columns={columns} data={products} searchKey="name" />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { DataTable } from "@/components/admin/orders/data-table"
+import { DataTable } from "@/components/admin/shared/data-table"
 import { columns } from "@/components/admin/orders/columns"
 
 const orders = [
@@ -34,7 +34,7 @@ export default function OrdersPage() {
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold">Orders</h2>
       </div>
-      <DataTable columns={columns} data={orders} />
+      <DataTable columns={columns} data={orders} searchKey="customer" />
     </div>
   )
 }

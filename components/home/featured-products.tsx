@@ -33,8 +33,17 @@ const categories = [
 
 export function FeaturedProducts() {
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-16 md:py-24 bg-muted/30">
       <div className="container space-y-16">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold tracking-tight mb-4 md:text-4xl">
+            Featured Collections
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Explore our carefully curated collections of premium fragrances
+          </p>
+        </div>
+
         {categories.map(category => {
           const products = getProductsByCategory(category.id)
           
@@ -43,10 +52,10 @@ export function FeaturedProducts() {
           return (
             <div key={category.id} className="space-y-8">
               <div className="space-y-2">
-                <h2 className="text-xs sm:text-2xl font-bold tracking-tight md:text-3xl">
+                <h3 className="text-xl sm:text-2xl font-bold tracking-tight md:text-3xl">
                   {category.title}
-                </h2>
-                <p className="text-muted-foreground text-2xl">
+                </h3>
+                <p className="text-muted-foreground text-base sm:text-lg">
                   {category.description}
                 </p>
               </div>
@@ -66,7 +75,7 @@ export function FeaturedProducts() {
               <div className="text-center">
                 <Link 
                   href={`/shop?category=${category.id}`}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 >
                   View all {category.title.toLowerCase()} →
                 </Link>

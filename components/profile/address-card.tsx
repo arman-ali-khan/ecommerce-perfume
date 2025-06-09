@@ -44,7 +44,7 @@ export function AddressCard({ address, onEdit, onDelete, onSetDefault }: Address
         <AddressForm
           address={address}
           onSubmit={(updatedAddress) => {
-            onEdit({ ...updatedAddress, id: address.id })
+            onEdit({ ...updatedAddress, id: address.id, isDefault: updatedAddress.isDefault ?? false })
             setIsEditing(false)
           }}
           onCancel={() => setIsEditing(false)}

@@ -14,7 +14,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
+} from "@/components/ui/form" 
 
 const formSchema = z.object({
   storeName: z.string().min(2).max(50),

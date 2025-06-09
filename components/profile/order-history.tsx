@@ -132,7 +132,7 @@ export function OrderHistory() {
                 Ordered on {selectedOrder && format(selectedOrder.date, "MMMM d, yyyy")}
               </p>
               <Badge className={`${selectedOrder && getStatusColor(selectedOrder.status)} text-white`}>
-                {selectedOrder?.status.charAt(0).toUpperCase() + selectedOrder?.status.slice(1)}
+                {selectedOrder && selectedOrder.status.charAt(0).toUpperCase() + selectedOrder.status.slice(1)}
               </Badge>
             </div>
 

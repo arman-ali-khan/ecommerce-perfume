@@ -46,7 +46,10 @@ export function AddressBook() {
         <div className="mb-6">
           <AddressForm
             onSubmit={(address) => {
-              setAddresses([...addresses, { ...address, id: Date.now().toString() }])
+              setAddresses([
+                ...addresses,
+                { ...address, id: Date.now().toString(), isDefault: address.isDefault ?? false }
+              ])
               setShowForm(false)
             }}
             onCancel={() => setShowForm(false)}
