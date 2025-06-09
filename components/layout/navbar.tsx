@@ -24,6 +24,7 @@ export function Navbar() {
   const navItems = [
     { label: "Home", path: "/" },
     { label: "Shop", path: "/shop" },
+    { label: "Web3 View", path: "/product-web3/1" },
   ]
 
   const handleSearchClick = () => {
